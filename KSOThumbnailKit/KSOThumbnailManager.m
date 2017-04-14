@@ -46,7 +46,7 @@
     _cacheOptions = KSOThumbnailManagerCacheOptionsAll;
     _completionQueue = [self.class _defaultCompletionQueue];
     
-    _fileCacheDirectoryURL = [[[NSFileManager defaultManager].KST_cachesDirectoryURL URLByAppendingPathComponent:self.identifier isDirectory:YES] URLByAppendingPathComponent:@"thumbnails" isDirectory:YES];
+    _fileCacheDirectoryURL = [[NSFileManager.defaultManager.KST_cachesDirectoryURL URLByAppendingPathComponent:self.identifier isDirectory:YES] URLByAppendingPathComponent:@"thumbnails" isDirectory:YES];
     
     if (![_fileCacheDirectoryURL checkResourceIsReachableAndReturnError:NULL]) {
         NSError *outError;
@@ -117,7 +117,7 @@
     return 0.25;
 }
 + (NSOperationQueue *)_defaultCompletionQueue; {
-    return [NSOperationQueue mainQueue];
+    return NSOperationQueue.mainQueue;
 }
 
 @end
