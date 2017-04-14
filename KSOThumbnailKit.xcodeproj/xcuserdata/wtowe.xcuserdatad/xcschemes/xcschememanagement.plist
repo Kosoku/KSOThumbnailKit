@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Demo-iOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>KSOThumbnailKit-iOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>07DE39DA1EA1495F00CB965E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07DE39F01EA14EB900CB965E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

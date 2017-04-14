@@ -19,9 +19,31 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, KSOThumbnailManagerCacheType) {
+    KSOThumbnailManagerCacheTypeNone = 0,
+    KSOThumbnailManagerCacheTypeFile,
+    KSOThumbnailManagerCacheTypeMemory
+};
+
+typedef NS_OPTIONS(NSUInteger, KSOThumbnailManagerCacheOptions) {
+    KSOThumbnailManagerCacheOptionsNone = 0,
+    KSOThumbnailManagerCacheOptionsFile = 1 << 0,
+    KSOThumbnailManagerCacheOptionsMemory = 1 << 1
+};
+
+typedef void(^KSOThumbnailManagerCompletionBlock)(KSOImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL *URL, KSOSize size, NSUInteger page, NSTimeInterval time);
+
 @interface KSOThumbnailManager : NSObject
 
 @property (class,readonly,nonatomic) KSOThumbnailManager *sharedManager;
+
+@property (assign,nonatomic) KSOThumbnailManagerCacheOptions cacheOptions;
+@property (readonly,nonatomic,getter=isFileCachingEnabled) BOOL fileCachingEnabled;
+@property (readonly,nonatomic,getter=isMemoryCachingEnabled) BOOL memoryCachingEnabled;
+
+@property (assign,nonatomic) KSOSize defaultSize;
+@property (assign,nonatomic) NSUInteger defaultPage;
+@property (assign,nonatomic) NSTimeInterval defaultTime;
 
 @end
 
