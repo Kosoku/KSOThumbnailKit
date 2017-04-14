@@ -16,6 +16,7 @@
 #import <Foundation/Foundation.h>
 
 #import <KSOThumbnailKit/KSOThumbnailKitDefines.h>
+#import <KSOThumbnailKit/KSOThumbnailOperation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,7 +33,10 @@ typedef NS_OPTIONS(NSUInteger, KSOThumbnailManagerCacheOptions) {
     KSOThumbnailManagerCacheOptionsAll = KSOThumbnailManagerCacheOptionsFile | KSOThumbnailManagerCacheOptionsMemory
 };
 
-typedef void(^KSOThumbnailManagerCompletionBlock)(KSOImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL *URL, KSOSize size, NSUInteger page, NSTimeInterval time);
+@class KSOThumbnailManager;
+
+typedef void(^KSOThumbnailManagerDownloadProgressBlock)(KSOThumbnailManager *manager, id<KSOThumbnailOperation> operation, NSURL *URL, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
+typedef void(^KSOThumbnailManagerCompletionBlock)(KSOThumbnailManager *thumbnailManager, id<KSOThumbnailOperation> _Nullable operation, KSOImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL *URL, KSOSize size, NSUInteger page, NSTimeInterval time);
 
 @interface KSOThumbnailManager : NSObject
 
@@ -52,8 +56,14 @@ typedef void(^KSOThumbnailManagerCompletionBlock)(KSOImage * _Nullable image, NS
 @property (strong,nonatomic,null_resettable) NSOperationQueue *completionQueue;
 
 - (instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
-
 - (instancetype)init NS_UNAVAILABLE;
+
+- (void)clearFileCache;
+- (void)clearMemoryCache;
+
+- (void)cancelAllThumbnailOperations;
+
+- (nullable id<KSOThumbnailOperation>)thumbnailOperationWithURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time downloadProgress:(nullable KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion;
 
 @end
 

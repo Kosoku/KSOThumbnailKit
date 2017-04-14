@@ -42,4 +42,9 @@
 
 #endif
 
+FOUNDATION_EXPORT NSString *const KSOThumbnailKitErrorDomain;
+
+FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeFileCacheRead;
+FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeFileCacheDecode;
+
 #endif

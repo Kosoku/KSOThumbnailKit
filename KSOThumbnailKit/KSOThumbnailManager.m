@@ -14,8 +14,15 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "KSOThumbnailManager.h"
+#import "KSOThumbnailOperationWrapper.h"
 
 #import <Stanley/Stanley.h>
+
+NSString *const KSOThumbnailKitErrorDomain = @"com.kosoku.ksothumbnailkit.error";
+
+NSInteger const KSOThumbnailKitErrorCodeFileCacheRead = 1;
+
+#define KSOImageFromData(theData) ([[UIImage alloc] initWithData:theData])
 
 @interface KSOThumbnailManager () <NSCacheDelegate>
 @property (readwrite,copy,nonatomic) NSString *identifier;
@@ -23,6 +30,11 @@
 @property (strong,nonatomic) NSOperationQueue *fileCacheQueue;
 @property (strong,nonatomic) NSOperationQueue *thumbnailQueue;
 @property (strong,nonatomic) NSCache *memoryCache;
+
+- (void)_createFileCacheDirectoryIfNecessary;
+- (NSString *)_memoryCacheKeyForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time;
+- (NSURL *)_fileCacheURLForMemoryCacheKey:(NSString *)key;
+- (NSURL *)_fileCacheURLForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time;
 
 + (KSOSize)_defaultSize;
 + (NSUInteger)_defaultPage;
@@ -46,15 +58,6 @@
     _cacheOptions = KSOThumbnailManagerCacheOptionsAll;
     _completionQueue = [self.class _defaultCompletionQueue];
     
-    _fileCacheDirectoryURL = [[NSFileManager.defaultManager.KST_cachesDirectoryURL URLByAppendingPathComponent:self.identifier isDirectory:YES] URLByAppendingPathComponent:@"thumbnails" isDirectory:YES];
-    
-    if (![_fileCacheDirectoryURL checkResourceIsReachableAndReturnError:NULL]) {
-        NSError *outError;
-        if (![[NSFileManager defaultManager] createDirectoryAtURL:_fileCacheDirectoryURL withIntermediateDirectories:YES attributes:nil error:&outError]) {
-            KSTLogObject(outError);
-        }
-    }
-    
     _fileCacheQueue = [[NSOperationQueue alloc] init];
     [_fileCacheQueue setName:[NSString stringWithFormat:@"queue.file.%@.%p",NSStringFromClass(self.class),self]];
     [_fileCacheQueue setMaxConcurrentOperationCount:1];
@@ -68,7 +71,90 @@
     [_memoryCache setName:[NSString stringWithFormat:@"cache.memory.%@.%p",NSStringFromClass(self.class),self]];
     [_memoryCache setDelegate:self];
     
+    [self _createFileCacheDirectoryIfNecessary];
+    
     return self;
+}
+
+- (void)clearFileCache; {
+    if ([NSFileManager.defaultManager removeItemAtURL:self.fileCacheDirectoryURL error:NULL]) {
+        [self _createFileCacheDirectoryIfNecessary];
+    }
+}
+- (void)clearMemoryCache; {
+    [self.memoryCache removeAllObjects];
+}
+
+- (void)cancelAllThumbnailOperations; {
+    [self.thumbnailQueue cancelAllOperations];
+}
+
+- (id<KSOThumbnailOperation>)thumbnailOperationWithURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time downloadProgress:(KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion; {
+    NSParameterAssert(URL != nil);
+    NSParameterAssert(size.width > 0.0 && size.height > 0);
+    NSParameterAssert(page >= 0);
+    NSParameterAssert(time >= 0.0);
+    NSParameterAssert(completion != nil);
+    
+    if (self.isMemoryCachingEnabled) {
+        NSString *key = [self _memoryCacheKeyForURL:URL size:size page:page time:time];
+        KSOImage *image = [self.memoryCache objectForKey:key];
+        
+        if (image != nil) {
+            [self.completionQueue addOperationWithBlock:^{
+                completion(self,nil,image,nil,KSOThumbnailManagerCacheTypeMemory,URL,size,page,time);
+            }];
+            return nil;
+        }
+    }
+    
+    if (self.isFileCachingEnabled) {
+        NSURL *fileURL = [self _fileCacheURLForURL:URL size:size page:page time:time];
+        
+        if ([fileURL checkResourceIsReachableAndReturnError:NULL]) {
+            [self.fileCacheQueue addOperationWithBlock:^{
+                NSError *outError;
+                NSData *data = [NSData dataWithContentsOfURL:fileURL options:NSDataReadingUncached error:&outError];
+                
+                if (data == nil) {
+                    NSError *error = [NSError errorWithDomain:KSOThumbnailKitErrorDomain code:KSOThumbnailKitErrorCodeFileCacheRead userInfo:@{NSUnderlyingErrorKey: outError}];
+                    
+                    [self.completionQueue addOperationWithBlock:^{
+                        completion(self,nil,nil,error,KSOThumbnailManagerCacheTypeNone,URL,size,page,time);
+                    }];
+                }
+                else {
+                    KSOImage *image = KSOImageFromData(data);
+                    
+                    if (image == nil) {
+                        NSError *error = [NSError errorWithDomain:KSOThumbnailKitErrorDomain code:KSOThumbnailKitErrorCodeFileCacheDecode userInfo:nil];
+                        
+                        [self.completionQueue addOperationWithBlock:^{
+                            completion(self,nil,nil,error,KSOThumbnailManagerCacheTypeNone,URL,size,page,time);
+                        }];
+                    }
+                    else {
+                        if (self.isMemoryCachingEnabled) {
+                            [self.memoryCache setObject:image forKey:[self _memoryCacheKeyForURL:URL size:size page:page time:time] cost:image.size.width * image.size.height * image.scale];
+                        }
+                        
+                        [self.completionQueue addOperationWithBlock:^{
+                            completion(self,nil,image,nil,KSOThumbnailManagerCacheTypeFile,URL,size,page,time);
+                        }];
+                    }
+                }
+            }];
+            return nil;
+        }
+    }
+    
+    KSOThumbnailOperationWrapper *retval = [[KSOThumbnailOperationWrapper alloc] init];
+    
+    if (URL.isFileURL) {
+        
+    }
+    
+    return retval;
 }
 #pragma mark Properties
 + (KSOThumbnailManager *)sharedManager {
@@ -104,11 +190,31 @@
     _completionQueue = completionQueue ?: [self.class _defaultCompletionQueue];
 }
 #pragma mark *** Private Methods ***
+- (void)_createFileCacheDirectoryIfNecessary; {
+    _fileCacheDirectoryURL = [[NSFileManager.defaultManager.KST_cachesDirectoryURL URLByAppendingPathComponent:self.identifier isDirectory:YES] URLByAppendingPathComponent:@"thumbnails" isDirectory:YES];
+    
+    if (![_fileCacheDirectoryURL checkResourceIsReachableAndReturnError:NULL]) {
+        NSError *outError;
+        if (![[NSFileManager defaultManager] createDirectoryAtURL:_fileCacheDirectoryURL withIntermediateDirectories:YES attributes:nil error:&outError]) {
+            KSTLogObject(outError);
+        }
+    }
+}
+- (NSString *)_memoryCacheKeyForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time; {
+    return [NSString stringWithFormat:@"%@.%@.%@.%@",[URL.absoluteString KST_MD5String],NSStringFromCGSize(size),@(page),@(time)];
+}
+- (NSURL *)_fileCacheURLForMemoryCacheKey:(NSString *)key; {
+    return [self.fileCacheDirectoryURL URLByAppendingPathComponent:key isDirectory:NO];
+}
+- (NSURL *)_fileCacheURLForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time; {
+    return [self _fileCacheURLForMemoryCacheKey:[self _memoryCacheKeyForURL:URL size:size page:page time:time]];
+}
+
 + (KSOSize)_defaultSize; {
     return CGSizeMake(175, 175);
 }
 + (NSUInteger)_defaultPage; {
-    return 1;
+    return 0;
 }
 + (NSTimeInterval)_defaultTime; {
     return 1.0;
