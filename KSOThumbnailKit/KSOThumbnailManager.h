@@ -38,6 +38,8 @@ typedef void(^KSOThumbnailManagerCompletionBlock)(KSOImage * _Nullable image, NS
 
 @property (class,readonly,nonatomic) KSOThumbnailManager *sharedManager;
 
+@property (readonly,copy,nonatomic) NSString *identifier;
+
 @property (assign,nonatomic) KSOThumbnailManagerCacheOptions cacheOptions;
 @property (readonly,nonatomic,getter=isFileCachingEnabled) BOOL fileCachingEnabled;
 @property (readonly,nonatomic,getter=isMemoryCachingEnabled) BOOL memoryCachingEnabled;
@@ -46,6 +48,12 @@ typedef void(^KSOThumbnailManagerCompletionBlock)(KSOImage * _Nullable image, NS
 @property (assign,nonatomic) NSUInteger defaultPage;
 @property (assign,nonatomic) NSTimeInterval defaultTime;
 @property (assign,nonatomic) CGFloat defaultTimeRatio;
+
+@property (strong,nonatomic,null_resettable) NSOperationQueue *completionQueue;
+
+- (instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)init NS_UNAVAILABLE;
 
 @end
 

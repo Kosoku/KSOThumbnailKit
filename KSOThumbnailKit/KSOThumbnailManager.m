@@ -15,30 +15,67 @@
 
 #import "KSOThumbnailManager.h"
 
-@interface KSOThumbnailManager ()
+#import <Stanley/Stanley.h>
+
+@interface KSOThumbnailManager () <NSCacheDelegate>
+@property (readwrite,copy,nonatomic) NSString *identifier;
+@property (copy,nonatomic) NSURL *fileCacheDirectoryURL;
+@property (strong,nonatomic) NSOperationQueue *fileCacheQueue;
+@property (strong,nonatomic) NSOperationQueue *thumbnailQueue;
+@property (strong,nonatomic) NSCache *memoryCache;
+
 + (KSOSize)_defaultSize;
 + (NSUInteger)_defaultPage;
 + (NSTimeInterval)_defaultTime;
 + (CGFloat)_defaultTimeRatio;
++ (NSOperationQueue *)_defaultCompletionQueue;
 @end
 
 @implementation KSOThumbnailManager
 #pragma mark *** Subclass Overrides ***
-- (instancetype)init {
+#pragma mark NSCacheDelegate
+- (void)cache:(NSCache *)cache willEvictObject:(id)obj {
+    KSTLog(@"%@ %@",cache,obj);
+}
+#pragma mark *** Public Methods ***
+- (instancetype)initWithIdentifier:(NSString *)identifier {
     if (!(self = [super init]))
         return nil;
     
+    _identifier = [identifier copy];
     _cacheOptions = KSOThumbnailManagerCacheOptionsAll;
+    _completionQueue = [self.class _defaultCompletionQueue];
+    
+    _fileCacheDirectoryURL = [[[NSFileManager defaultManager].KST_cachesDirectoryURL URLByAppendingPathComponent:self.identifier isDirectory:YES] URLByAppendingPathComponent:@"thumbnails" isDirectory:YES];
+    
+    if (![_fileCacheDirectoryURL checkResourceIsReachableAndReturnError:NULL]) {
+        NSError *outError;
+        if (![[NSFileManager defaultManager] createDirectoryAtURL:_fileCacheDirectoryURL withIntermediateDirectories:YES attributes:nil error:&outError]) {
+            KSTLogObject(outError);
+        }
+    }
+    
+    _fileCacheQueue = [[NSOperationQueue alloc] init];
+    [_fileCacheQueue setName:[NSString stringWithFormat:@"queue.file.%@.%p",NSStringFromClass(self.class),self]];
+    [_fileCacheQueue setMaxConcurrentOperationCount:1];
+    [_fileCacheQueue setQualityOfService:NSQualityOfServiceBackground];
+    
+    _thumbnailQueue = [[NSOperationQueue alloc] init];
+    [_thumbnailQueue setName:[NSString stringWithFormat:@"queue.thumbnail.%@.%p",NSStringFromClass(self.class),self]];
+    [_thumbnailQueue setQualityOfService:NSQualityOfServiceUtility];
+    
+    _memoryCache = [[NSCache alloc] init];
+    [_memoryCache setName:[NSString stringWithFormat:@"cache.memory.%@.%p",NSStringFromClass(self.class),self]];
+    [_memoryCache setDelegate:self];
     
     return self;
 }
-#pragma mark *** Public Methods ***
 #pragma mark Properties
 + (KSOThumbnailManager *)sharedManager {
     static KSOThumbnailManager *kRetval;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        kRetval = [[KSOThumbnailManager alloc] init];
+        kRetval = [[KSOThumbnailManager alloc] initWithIdentifier:[NSString stringWithFormat:@"%@.%@",[NSBundle mainBundle].KST_bundleIdentifier,NSStringFromClass(self)]];
     });
     return kRetval;
 }
@@ -62,6 +99,10 @@
 - (void)setDefaultTimeRatio:(CGFloat)defaultTimeRatio {
     _defaultTimeRatio = defaultTimeRatio <= 0.0 ? [self.class _defaultTimeRatio] : defaultTimeRatio;
 }
+
+- (void)setCompletionQueue:(NSOperationQueue *)completionQueue {
+    _completionQueue = completionQueue ?: [self.class _defaultCompletionQueue];
+}
 #pragma mark *** Private Methods ***
 + (KSOSize)_defaultSize; {
     return CGSizeMake(175, 175);
@@ -74,6 +115,9 @@
 }
 + (CGFloat)_defaultTimeRatio {
     return 0.25;
+}
++ (NSOperationQueue *)_defaultCompletionQueue; {
+    return [NSOperationQueue mainQueue];
 }
 
 @end
