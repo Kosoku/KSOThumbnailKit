@@ -15,17 +15,25 @@
 
 #import "KSOThumbnailManager.h"
 
-@implementation KSOThumbnailManager
+@interface KSOThumbnailManager ()
++ (KSOSize)_defaultSize;
++ (NSUInteger)_defaultPage;
++ (NSTimeInterval)_defaultTime;
++ (CGFloat)_defaultTimeRatio;
+@end
 
+@implementation KSOThumbnailManager
+#pragma mark *** Subclass Overrides ***
 - (instancetype)init {
     if (!(self = [super init]))
         return nil;
     
-    
+    _cacheOptions = KSOThumbnailManagerCacheOptionsAll;
     
     return self;
 }
-
+#pragma mark *** Public Methods ***
+#pragma mark Properties
 + (KSOThumbnailManager *)sharedManager {
     static KSOThumbnailManager *kRetval;
     static dispatch_once_t onceToken;
@@ -33,6 +41,39 @@
         kRetval = [[KSOThumbnailManager alloc] init];
     });
     return kRetval;
+}
+
+- (BOOL)isFileCachingEnabled {
+    return self.cacheOptions & KSOThumbnailManagerCacheOptionsFile;
+}
+- (BOOL)isMemoryCachingEnabled {
+    return self.cacheOptions & KSOThumbnailManagerCacheOptionsMemory;
+}
+
+- (void)setDefaultSize:(KSOSize)defaultSize {
+    _defaultSize = CGSizeEqualToSize(defaultSize, CGSizeZero) ? [self.class _defaultSize] : defaultSize;
+}
+- (void)setDefaultPage:(NSUInteger)defaultPage {
+    _defaultPage = defaultPage == 0 ? [self.class _defaultPage] : defaultPage;
+}
+- (void)setDefaultTime:(NSTimeInterval)defaultTime {
+    _defaultTime = defaultTime < 0.0 ? [self.class _defaultTime] : defaultTime;
+}
+- (void)setDefaultTimeRatio:(CGFloat)defaultTimeRatio {
+    _defaultTimeRatio = defaultTimeRatio <= 0.0 ? [self.class _defaultTimeRatio] : defaultTimeRatio;
+}
+#pragma mark *** Private Methods ***
++ (KSOSize)_defaultSize; {
+    return CGSizeMake(175, 175);
+}
++ (NSUInteger)_defaultPage; {
+    return 1;
+}
++ (NSTimeInterval)_defaultTime; {
+    return 1.0;
+}
++ (CGFloat)_defaultTimeRatio {
+    return 0.25;
 }
 
 @end

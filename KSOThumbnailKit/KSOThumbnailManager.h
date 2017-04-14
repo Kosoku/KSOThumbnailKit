@@ -28,7 +28,8 @@ typedef NS_ENUM(NSInteger, KSOThumbnailManagerCacheType) {
 typedef NS_OPTIONS(NSUInteger, KSOThumbnailManagerCacheOptions) {
     KSOThumbnailManagerCacheOptionsNone = 0,
     KSOThumbnailManagerCacheOptionsFile = 1 << 0,
-    KSOThumbnailManagerCacheOptionsMemory = 1 << 1
+    KSOThumbnailManagerCacheOptionsMemory = 1 << 1,
+    KSOThumbnailManagerCacheOptionsAll = KSOThumbnailManagerCacheOptionsFile | KSOThumbnailManagerCacheOptionsMemory
 };
 
 typedef void(^KSOThumbnailManagerCompletionBlock)(KSOImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL *URL, KSOSize size, NSUInteger page, NSTimeInterval time);
@@ -44,6 +45,7 @@ typedef void(^KSOThumbnailManagerCompletionBlock)(KSOImage * _Nullable image, NS
 @property (assign,nonatomic) KSOSize defaultSize;
 @property (assign,nonatomic) NSUInteger defaultPage;
 @property (assign,nonatomic) NSTimeInterval defaultTime;
+@property (assign,nonatomic) CGFloat defaultTimeRatio;
 
 @end
 
