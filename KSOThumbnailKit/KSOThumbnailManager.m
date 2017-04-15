@@ -18,7 +18,7 @@
 #import "KSOImageThumbnailOperation.h"
 #import "KSOMovieThumbnailOperation.h"
 #import "KSOPDFThumbnailOperation.h"
-#import "KSOHTMLThumbnailOperation.h"
+#import "KSOWebKitThumbnailOperation.h"
 #import "KSOTextThumbnailOperation.h"
 #import "KSOVimeoThumbnailOperation.h"
 #import "KSOYouTubeThumbnailOperation.h"
@@ -270,7 +270,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     if (URL.isFileURL) {
         if (URL.pathExtension.length > 0) {
             if ([@[@"ppt",@"pptx",@"doc",@"docx",@"xls",@"xlsx",@"csv",@"key",@"pages",@"numbers"] containsObject:URL.pathExtension.lowercaseString]) {
-                return [KSOHTMLThumbnailOperation class];
+                return [KSOWebKitThumbnailOperation class];
             }
             
             NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.pathExtension, NULL);
@@ -288,7 +288,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
         return [KSOYouTubeThumbnailOperation class];
     }
     else {
-        return [KSOHTMLThumbnailOperation class];
+        return [KSOWebKitThumbnailOperation class];
     }
 }
 - (Class)_thumbnailOperationClassForUTI:(NSString *)UTI; {
@@ -302,7 +302,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
         return [KSOPDFThumbnailOperation class];
     }
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML)) {
-        return [KSOHTMLThumbnailOperation class];
+        return [KSOWebKitThumbnailOperation class];
     }
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTF) ||
              UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTFD) ||

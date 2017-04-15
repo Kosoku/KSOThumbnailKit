@@ -1,5 +1,5 @@
 //
-//  KSOHTMLThumbnailOperation.h
+//  KSOWebKitThumbnailOperation.h
 //  KSOThumbnailKit
 //
 //  Created by William Towe on 4/14/17.
@@ -15,6 +15,6 @@
 
 #import "KSOAsynchronousThumbnailOperation.h"
 
-@interface KSOHTMLThumbnailOperation : KSOAsynchronousThumbnailOperation
+@interface KSOWebKitThumbnailOperation : KSOAsynchronousThumbnailOperation
 
 @end
