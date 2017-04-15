@@ -93,6 +93,11 @@
 		07F40F6B1EA2C6A8003A180A /* KSOVimeoThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F40F101EA2B74E003A180A /* KSOVimeoThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		07F40F6C1EA2C6A8003A180A /* KSOYouTubeThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F40F141EA2BD1C003A180A /* KSOYouTubeThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		07F40F6D1EA2C717003A180A /* KSOWebKitThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B49431EA1D0A3006273C1 /* KSOWebKitThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07F40F6E1EA2C815003A180A /* media in Resources */ = {isa = PBXBuildFile; fileRef = 070D870A1EA1B00100666FB1 /* media */; };
+		07F40F701EA2C87B003A180A /* URLs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07F40F6F1EA2C87B003A180A /* URLs.plist */; };
+		07F40F711EA2C87B003A180A /* URLs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07F40F6F1EA2C87B003A180A /* URLs.plist */; };
+		07F40F731EA2C920003A180A /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07F40F721EA2C920003A180A /* APIKeys.plist */; };
+		07F40F741EA2C920003A180A /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07F40F721EA2C920003A180A /* APIKeys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +213,8 @@
 		07F40F441EA2C63E003A180A /* Ditko.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Ditko.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F40F481EA2C645003A180A /* Stanley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stanley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F40F4B1EA2C64C003A180A /* Loki.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loki.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F40F6F1EA2C87B003A180A /* URLs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = URLs.plist; sourceTree = "<group>"; };
+		07F40F721EA2C920003A180A /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,6 +367,8 @@
 				07DE3A041EA14EB900CB965E /* Info.plist */,
 				070D870A1EA1B00100666FB1 /* media */,
 				07DE39F41EA14EB900CB965E /* main.m */,
+				07F40F6F1EA2C87B003A180A /* URLs.plist */,
+				07F40F721EA2C920003A180A /* APIKeys.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -593,8 +602,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F40F701EA2C87B003A180A /* URLs.plist in Resources */,
 				07DE3A031EA14EB900CB965E /* LaunchScreen.storyboard in Resources */,
 				070D870B1EA1B00100666FB1 /* media in Resources */,
+				07F40F731EA2C920003A180A /* APIKeys.plist in Resources */,
 				07DE3A001EA14EB900CB965E /* Assets.xcassets in Resources */,
 				07DE39FE1EA14EB900CB965E /* Main.storyboard in Resources */,
 			);
@@ -611,7 +622,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F40F6E1EA2C815003A180A /* media in Resources */,
+				07F40F741EA2C920003A180A /* APIKeys.plist in Resources */,
 				07F40F3F1EA2C630003A180A /* Assets.xcassets in Resources */,
+				07F40F711EA2C87B003A180A /* URLs.plist in Resources */,
 				07F40F3D1EA2C630003A180A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

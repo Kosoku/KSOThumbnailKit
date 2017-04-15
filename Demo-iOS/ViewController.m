@@ -54,7 +54,7 @@
     [super viewDidLoad];
     
     [KSOThumbnailManager.sharedManager setCacheOptions:KSOThumbnailManagerCacheOptionsNone];
-    [KSOThumbnailManager.sharedManager setYouTubeAPIKey:@"AIzaSyBOZYk3X8-G2vZJ6-CGGBfuKLawuw_rjTE"];
+    [KSOThumbnailManager.sharedManager setYouTubeAPIKey:[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"APIKeys" withExtension:@"plist"]][@"youTube"]];
     
     NSMutableArray *URLs = [[NSMutableArray alloc] init];
     
@@ -62,10 +62,9 @@
         [URLs addObject:URL];
     }
     
-    [URLs addObject:[NSURL URLWithString:@"https://www.youtube.com/watch?v=-pr-xzajQo0"]];
-    [URLs addObject:[NSURL URLWithString:@"https://vimeo.com/43476107"]];
-    [URLs addObject:[NSURL URLWithString:@"https://www.hulu.com/"]];
-    [URLs addObject:[NSURL URLWithString:@"https://arstechnica.com/"]];
+    for (NSString *URLString in [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"URLs" withExtension:@"plist"]][@"URLs"]) {
+        [URLs addObject:[NSURL URLWithString:URLString]];
+    }
     
     [self setURLs:URLs];
     
