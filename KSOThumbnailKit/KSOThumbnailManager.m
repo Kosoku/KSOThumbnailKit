@@ -19,7 +19,7 @@
 #import "KSOMovieThumbnailOperation.h"
 #import "KSOPDFThumbnailOperation.h"
 #import "KSOHTMLThumbnailOperation.h"
-#import "KSORTFThumbnailOperation.h"
+#import "KSOTextThumbnailOperation.h"
 
 #import <Stanley/Stanley.h>
 #import <Loki/Loki.h>
@@ -297,8 +297,9 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
         return [KSOHTMLThumbnailOperation class];
     }
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTF) ||
-             UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTFD)) {
-        return [KSORTFThumbnailOperation class];
+             UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTFD) ||
+             UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {
+        return [KSOTextThumbnailOperation class];
     }
     else {
         return Nil;

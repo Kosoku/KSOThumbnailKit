@@ -15,6 +15,6 @@
 
 #import "KSOBaseThumbnailOperation.h"
 
-@interface KSORTFThumbnailOperation : KSOBaseThumbnailOperation
+@interface KSOTextThumbnailOperation : KSOBaseThumbnailOperation
 
 @end

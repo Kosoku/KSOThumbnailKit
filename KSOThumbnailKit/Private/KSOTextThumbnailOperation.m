@@ -13,14 +13,14 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "KSORTFThumbnailOperation.h"
+#import "KSOTextThumbnailOperation.h"
 #import "KSOThumbnailKitDefines.h"
 #import "KSOThumbnailKitPrivateDefines.h"
 
 #import <Loki/Loki.h>
 #import <Ditko/Ditko.h>
 
-@implementation KSORTFThumbnailOperation
+@implementation KSOTextThumbnailOperation
 
 - (void)main {
     if ([self checkCancelledAndInvokeCompletion]) {
@@ -28,7 +28,20 @@
     }
     
     NSError *outError;
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithURL:self.URL options:@{NSDocumentTypeDocumentAttribute: [self.URL.pathExtension isEqualToString:@"rtfd"] ? NSRTFDTextDocumentType : NSRTFTextDocumentType} documentAttributes:nil error:&outError];
+    NSMutableDictionary *options = [[NSMutableDictionary alloc] init];
+    
+    if ([self.URL.pathExtension isEqualToString:@"rtf"]) {
+        [options setObject:NSRTFTextDocumentType forKey:NSDocumentTypeDocumentAttribute];
+    }
+    else if ([self.URL.pathExtension isEqualToString:@"rtfd"]) {
+        [options setObject:NSRTFDTextDocumentType forKey:NSDocumentTypeDocumentAttribute];
+    }
+    else {
+        [options setObject:NSPlainTextDocumentType forKey:NSDocumentTypeDocumentAttribute];
+        [options setObject:@{NSForegroundColorAttributeName: [UIColor blackColor], NSBackgroundColorAttributeName: [UIColor whiteColor]} forKey:NSDefaultAttributesDocumentAttribute];
+    }
+    
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithURL:self.URL options:options documentAttributes:nil error:&outError];
     
     if (attributedString == nil) {
         NSError *error = [NSError errorWithDomain:KSOThumbnailKitErrorDomain code:KSOThumbnailKitErrorCodeRTFDecode userInfo:@{NSUnderlyingErrorKey: outError}];
