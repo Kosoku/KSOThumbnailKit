@@ -4,3 +4,6 @@
 [submodule "Vendor/Loki"]
 	path = Vendor/Loki
 	url = https://github.com/Kosoku/Loki.git
+[submodule "Vendor/Ditko"]
+	path = Vendor/Ditko
+	url = https://github.com/Kosoku/Ditko.git

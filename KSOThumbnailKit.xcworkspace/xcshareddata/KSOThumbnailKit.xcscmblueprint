@@ -1,15 +1,20 @@
 {
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9C257AA6502D8D6FC4BC5F12072D9A24A5B20819",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "092992F99F236C29DF2CD167CFC9863E1570ED68" : 9223372036854775807,
-    "C94B06A26B26F3DFAC67E018206B5755A8E083DD" : 9223372036854775807
+    "95DFEE02B27284838A8FA3A07714FEA27B4CE167" : 9223372036854775807,
+    "C94B06A26B26F3DFAC67E018206B5755A8E083DD" : 9223372036854775807,
+    "9C257AA6502D8D6FC4BC5F12072D9A24A5B20819" : 9223372036854775807,
+    "092992F99F236C29DF2CD167CFC9863E1570ED68" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1420B2F7-DFE1-420F-8CF9-494288B2677F",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "092992F99F236C29DF2CD167CFC9863E1570ED68" : "KSOThumbnailKit\/Vendor\/Loki\/",
-    "C94B06A26B26F3DFAC67E018206B5755A8E083DD" : "KSOThumbnailKit\/Vendor\/Stanley\/"
+    "95DFEE02B27284838A8FA3A07714FEA27B4CE167" : "KSOThumbnailKit\/Vendor\/Ditko\/",
+    "C94B06A26B26F3DFAC67E018206B5755A8E083DD" : "KSOThumbnailKit\/Vendor\/Stanley\/",
+    "9C257AA6502D8D6FC4BC5F12072D9A24A5B20819" : "KSOThumbnailKit\/",
+    "092992F99F236C29DF2CD167CFC9863E1570ED68" : "KSOThumbnailKit\/Vendor\/Loki\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "KSOThumbnailKit",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -19,6 +24,16 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Kosoku\/Loki.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "092992F99F236C29DF2CD167CFC9863E1570ED68"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Kosoku\/Ditko.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "95DFEE02B27284838A8FA3A07714FEA27B4CE167"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Kosoku\/KSOThumbnailKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9C257AA6502D8D6FC4BC5F12072D9A24A5B20819"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Kosoku\/Stanley.git",

@@ -64,6 +64,10 @@ NSInteger const KSOThumbnailKitErrorCodeImageDecode = 4;
     
     _identifier = [identifier copy];
     _cacheOptions = KSOThumbnailManagerCacheOptionsAll;
+    _defaultSize = [self.class _defaultSize];
+    _defaultPage = [self.class _defaultPage];
+    _defaultTime = [self.class _defaultTime];
+    _defaultTimeRatio = [self.class _defaultTimeRatio];
     _completionQueue = [self.class _defaultCompletionQueue];
     
     _fileCacheQueue = [[NSOperationQueue alloc] init];
@@ -234,7 +238,7 @@ NSInteger const KSOThumbnailKitErrorCodeImageDecode = 4;
 #pragma mark *** Private Methods ***
 - (void)_createFileCacheDirectoryIfNecessary; {
     _fileCacheDirectoryURL = [[NSFileManager.defaultManager.KST_cachesDirectoryURL URLByAppendingPathComponent:self.identifier isDirectory:YES] URLByAppendingPathComponent:@"thumbnails" isDirectory:YES];
-    
+    KSTLogObject(_fileCacheDirectoryURL.path);
     if (![_fileCacheDirectoryURL checkResourceIsReachableAndReturnError:NULL]) {
         NSError *outError;
         if (![[NSFileManager defaultManager] createDirectoryAtURL:_fileCacheDirectoryURL withIntermediateDirectories:YES attributes:nil error:&outError]) {
@@ -273,7 +277,7 @@ NSInteger const KSOThumbnailKitErrorCodeImageDecode = 4;
 }
 
 + (KSOSize)_defaultSize; {
-    return CGSizeMake(175, 175);
+    return CGSizeMake(150, 150);
 }
 + (NSUInteger)_defaultPage; {
     return 0;

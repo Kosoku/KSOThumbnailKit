@@ -16,6 +16,7 @@
 #import "KSOImageThumbnailOperation.h"
 
 #import <Loki/Loki.h>
+#import <Ditko/Ditko.h>
 
 #define KSOImageFromData(theData) ([[UIImage alloc] initWithData:theData])
 
@@ -43,7 +44,7 @@
             self.completion(self.manager, nil, error, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
         }
         else {
-            image = [image KLO_imageByResizingToSize:self.size];
+            image = [image KLO_imageByResizingToSize:KDICGSizeAdjustedForMainScreenScale(self.size)];
             
             self.completion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
         }

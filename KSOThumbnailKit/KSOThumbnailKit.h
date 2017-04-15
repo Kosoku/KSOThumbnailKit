@@ -23,7 +23,7 @@ FOUNDATION_EXPORT const unsigned char KSOThumbnailKitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <KSOThumbnailKit/PublicHeader.h>
 
-#import <KSOThumbnailKit/KSOThumbnailDefines.h>
+#import <KSOThumbnailKit/KSOThumbnailKitDefines.h>
 #import <KSOThumbnailKit/KSOThumbnailOperation.h>
 #import <KSOThumbnailKit/KSOThumbnailManagerDefines.h>
 

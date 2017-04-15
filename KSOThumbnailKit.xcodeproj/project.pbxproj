@@ -15,6 +15,10 @@
 		070D87051EA19EFE00666FB1 /* KSOThumbnailManagerDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87041EA19EFE00666FB1 /* KSOThumbnailManagerDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		070D87081EA1A24100666FB1 /* KSOImageThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87061EA1A24100666FB1 /* KSOImageThumbnailOperation.h */; };
 		070D87091EA1A24100666FB1 /* KSOImageThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D87071EA1A24100666FB1 /* KSOImageThumbnailOperation.m */; };
+		070D870B1EA1B00100666FB1 /* media in Resources */ = {isa = PBXBuildFile; fileRef = 070D870A1EA1B00100666FB1 /* media */; };
+		070D870D1EA1B78000666FB1 /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 070D870C1EA1B78000666FB1 /* Ditko.framework */; };
+		070D870F1EA1B78700666FB1 /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 070D870E1EA1B78700666FB1 /* Ditko.framework */; };
+		070D87101EA1B78700666FB1 /* Ditko.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 070D870E1EA1B78700666FB1 /* Ditko.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07DE39E01EA1495F00CB965E /* KSOThumbnailKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DE39DE1EA1495F00CB965E /* KSOThumbnailKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07DE39E91EA14B6A00CB965E /* KSOThumbnailManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DE39E71EA14B6A00CB965E /* KSOThumbnailManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07DE39EA1EA14B6A00CB965E /* KSOThumbnailManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DE39E81EA14B6A00CB965E /* KSOThumbnailManager.m */; };
@@ -54,6 +58,7 @@
 			files = (
 				07DE3A171EA158DB00CB965E /* Loki.framework in Embed Frameworks */,
 				07DE3A091EA14ECA00CB965E /* KSOThumbnailKit.framework in Embed Frameworks */,
+				070D87101EA1B78700666FB1 /* Ditko.framework in Embed Frameworks */,
 				07DE3A141EA158D500CB965E /* Stanley.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -70,6 +75,9 @@
 		070D87041EA19EFE00666FB1 /* KSOThumbnailManagerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOThumbnailManagerDefines.h; sourceTree = "<group>"; };
 		070D87061EA1A24100666FB1 /* KSOImageThumbnailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOImageThumbnailOperation.h; sourceTree = "<group>"; };
 		070D87071EA1A24100666FB1 /* KSOImageThumbnailOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOImageThumbnailOperation.m; sourceTree = "<group>"; };
+		070D870A1EA1B00100666FB1 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = media; sourceTree = "<group>"; };
+		070D870C1EA1B78000666FB1 /* Ditko.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ditko.framework; path = "Vendor/Ditko/build/Debug-iphoneos/Ditko.framework"; sourceTree = "<group>"; };
+		070D870E1EA1B78700666FB1 /* Ditko.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Ditko.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DE39DB1EA1495F00CB965E /* KSOThumbnailKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSOThumbnailKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DE39DE1EA1495F00CB965E /* KSOThumbnailKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSOThumbnailKit.h; sourceTree = "<group>"; };
 		07DE39DF1EA1495F00CB965E /* KSOThumbnailKit-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KSOThumbnailKit-iOS-Info.plist"; sourceTree = "<group>"; };
@@ -98,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070D870D1EA1B78000666FB1 /* Ditko.framework in Frameworks */,
 				07DE3A111EA158CF00CB965E /* Stanley.framework in Frameworks */,
 				07DE3A0F1EA158C900CB965E /* Loki.framework in Frameworks */,
 			);
@@ -109,6 +118,7 @@
 			files = (
 				07DE3A161EA158DB00CB965E /* Loki.framework in Frameworks */,
 				07DE3A081EA14ECA00CB965E /* KSOThumbnailKit.framework in Frameworks */,
+				070D870F1EA1B78700666FB1 /* Ditko.framework in Frameworks */,
 				07DE3A131EA158D500CB965E /* Stanley.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,10 +197,6 @@
 				07DE39F71EA14EB900CB965E /* AppDelegate.m */,
 				07DE39F91EA14EB900CB965E /* ViewController.h */,
 				07DE39FA1EA14EB900CB965E /* ViewController.m */,
-				07DE39FC1EA14EB900CB965E /* Main.storyboard */,
-				07DE39FF1EA14EB900CB965E /* Assets.xcassets */,
-				07DE3A011EA14EB900CB965E /* LaunchScreen.storyboard */,
-				07DE3A041EA14EB900CB965E /* Info.plist */,
 				07DE39F31EA14EB900CB965E /* Supporting Files */,
 			);
 			path = "Demo-iOS";
@@ -199,6 +205,11 @@
 		07DE39F31EA14EB900CB965E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				07DE39FC1EA14EB900CB965E /* Main.storyboard */,
+				07DE39FF1EA14EB900CB965E /* Assets.xcassets */,
+				07DE3A011EA14EB900CB965E /* LaunchScreen.storyboard */,
+				07DE3A041EA14EB900CB965E /* Info.plist */,
+				070D870A1EA1B00100666FB1 /* media */,
 				07DE39F41EA14EB900CB965E /* main.m */,
 			);
 			name = "Supporting Files";
@@ -207,6 +218,8 @@
 		07DE3A0D1EA158C900CB965E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				070D870E1EA1B78700666FB1 /* Ditko.framework */,
+				070D870C1EA1B78000666FB1 /* Ditko.framework */,
 				07DE3A121EA158D500CB965E /* Stanley.framework */,
 				07DE3A151EA158DB00CB965E /* Loki.framework */,
 				07DE3A101EA158CF00CB965E /* Stanley.framework */,
@@ -325,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07DE3A031EA14EB900CB965E /* LaunchScreen.storyboard in Resources */,
+				070D870B1EA1B00100666FB1 /* media in Resources */,
 				07DE3A001EA14EB900CB965E /* Assets.xcassets in Resources */,
 				07DE39FE1EA14EB900CB965E /* Main.storyboard in Resources */,
 			);
@@ -433,6 +447,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/Loki/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Vendor/Stanley/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Vendor/Ditko/build/Debug-iphoneos",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -503,6 +518,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/Loki/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Vendor/Stanley/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Vendor/Ditko/build/Debug-iphoneos",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
