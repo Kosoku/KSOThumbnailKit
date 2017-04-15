@@ -25,5 +25,6 @@ FOUNDATION_EXPORT const unsigned char KSOThumbnailKitVersionString[];
 
 #import <KSOThumbnailKit/KSOThumbnailDefines.h>
 #import <KSOThumbnailKit/KSOThumbnailOperation.h>
+#import <KSOThumbnailKit/KSOThumbnailManagerDefines.h>
 
 #import <KSOThumbnailKit/KSOThumbnailManager.h>

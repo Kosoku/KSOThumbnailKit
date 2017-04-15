@@ -1,5 +1,5 @@
 //
-//  KSOThumbnailKitDefines.h
+//  KSOThumbnailManagerDefines.h
 //  KSOThumbnailKit
 //
 //  Created by William Towe on 4/14/17.
@@ -13,40 +13,32 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef __KSO_THUMBNAIL_KIT_DEFINES__
-#define __KSO_THUMBNAIL_KIT_DEFINES__
+#ifndef __KSO_THUMBNAIL_MANAGER_DEFINES__
+#define __KSO_THUMBNAIL_MANAGER_DEFINES__
 
-#import <TargetConditionals.h>
-#if (TARGET_OS_IPHONE)
-#import <UIKit/UIKit.h>
-#else
-#import <AppKit/AppKit.h>
-#endif
+#import <KSOThumbnailKit/KSOThumbnailKitDefines.h>
+#import <KSOThumbnailKit/KSOThumbnailOperation.h>
 
-#if (TARGET_OS_IPHONE)
-#ifndef KSOSize
-#define KSOSize CGSize
-#endif
-#ifndef KSOImage
-#define KSOImage UIImage
-#endif
+NS_ASSUME_NONNULL_BEGIN
 
-#else
+typedef NS_ENUM(NSInteger, KSOThumbnailManagerCacheType) {
+    KSOThumbnailManagerCacheTypeNone = 0,
+    KSOThumbnailManagerCacheTypeFile,
+    KSOThumbnailManagerCacheTypeMemory
+};
 
-#ifndef KSOSize
-#define KSOSize NSSize
-#endif
-#ifndef KSOImage
-#define KSOImage NSImage
-#endif
+typedef NS_OPTIONS(NSUInteger, KSOThumbnailManagerCacheOptions) {
+    KSOThumbnailManagerCacheOptionsNone = 0,
+    KSOThumbnailManagerCacheOptionsFile = 1 << 0,
+    KSOThumbnailManagerCacheOptionsMemory = 1 << 1,
+    KSOThumbnailManagerCacheOptionsAll = KSOThumbnailManagerCacheOptionsFile | KSOThumbnailManagerCacheOptionsMemory
+};
 
-#endif
+@class KSOThumbnailManager;
 
-FOUNDATION_EXPORT NSString *const KSOThumbnailKitErrorDomain;
+typedef void(^KSOThumbnailManagerDownloadProgressBlock)(KSOThumbnailManager *manager, NSURL *URL, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
+typedef void(^KSOThumbnailManagerCompletionBlock)(KSOThumbnailManager *thumbnailManager, KSOImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL *URL, KSOSize size, NSUInteger page, NSTimeInterval time, CGFloat timeRatio);
 
-FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeFileCacheRead;
-FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeFileCacheDecode;
-FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeImageRead;
-FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeImageDecode;
+NS_ASSUME_NONNULL_END
 
 #endif

@@ -15,6 +15,24 @@
 
 #import <Foundation/Foundation.h>
 
+#import <KSOThumbnailKit/KSOThumbnailManagerDefines.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface KSOBaseThumbnailOperation : NSOperation
 
+@property (readonly,weak,nonatomic) KSOThumbnailManager *manager;
+@property (readonly,copy,nonatomic) NSURL *URL;
+@property (readonly,assign,nonatomic) KSOSize size;
+@property (readonly,assign,nonatomic) NSUInteger page;
+@property (readonly,assign,nonatomic) NSTimeInterval time;
+@property (readonly,assign,nonatomic) CGFloat timeRatio;
+@property (readonly,copy,nonatomic,nullable) KSOThumbnailManagerDownloadProgressBlock downloadProgress;
+@property (readonly,copy,nonatomic) KSOThumbnailManagerCompletionBlock completion;
+
+- (instancetype)initWithManager:(KSOThumbnailManager *)manager URL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio downloadProgress:(nullable KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
+
 @end
+
+NS_ASSUME_NONNULL_END

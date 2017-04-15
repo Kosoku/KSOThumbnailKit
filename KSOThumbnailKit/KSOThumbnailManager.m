@@ -15,12 +15,19 @@
 
 #import "KSOThumbnailManager.h"
 #import "KSOThumbnailOperationWrapper.h"
+#import "KSOImageThumbnailOperation.h"
 
 #import <Stanley/Stanley.h>
+#import <Loki/Loki.h>
+
+#import <MobileCoreServices/MobileCoreServices.h>
 
 NSString *const KSOThumbnailKitErrorDomain = @"com.kosoku.ksothumbnailkit.error";
 
 NSInteger const KSOThumbnailKitErrorCodeFileCacheRead = 1;
+NSInteger const KSOThumbnailKitErrorCodeFileCacheDecode = 2;
+NSInteger const KSOThumbnailKitErrorCodeImageRead = 3;
+NSInteger const KSOThumbnailKitErrorCodeImageDecode = 4;
 
 #define KSOImageFromData(theData) ([[UIImage alloc] initWithData:theData])
 
@@ -35,6 +42,7 @@ NSInteger const KSOThumbnailKitErrorCodeFileCacheRead = 1;
 - (NSString *)_memoryCacheKeyForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time;
 - (NSURL *)_fileCacheURLForMemoryCacheKey:(NSString *)key;
 - (NSURL *)_fileCacheURLForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time;
+- (Class)_thumbnailOperationClassForURL:(NSURL *)URL;
 
 + (KSOSize)_defaultSize;
 + (NSUInteger)_defaultPage;
@@ -89,7 +97,7 @@ NSInteger const KSOThumbnailKitErrorCodeFileCacheRead = 1;
     [self.thumbnailQueue cancelAllOperations];
 }
 
-- (id<KSOThumbnailOperation>)thumbnailOperationWithURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time downloadProgress:(KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion; {
+- (id<KSOThumbnailOperation>)thumbnailOperationWithURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio downloadProgress:(KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion; {
     NSParameterAssert(URL != nil);
     NSParameterAssert(size.width > 0.0 && size.height > 0);
     NSParameterAssert(page >= 0);
@@ -102,7 +110,7 @@ NSInteger const KSOThumbnailKitErrorCodeFileCacheRead = 1;
         
         if (image != nil) {
             [self.completionQueue addOperationWithBlock:^{
-                completion(self,nil,image,nil,KSOThumbnailManagerCacheTypeMemory,URL,size,page,time);
+                completion(self,image,nil,KSOThumbnailManagerCacheTypeMemory,URL,size,page,time,timeRatio);
             }];
             return nil;
         }
@@ -120,7 +128,7 @@ NSInteger const KSOThumbnailKitErrorCodeFileCacheRead = 1;
                     NSError *error = [NSError errorWithDomain:KSOThumbnailKitErrorDomain code:KSOThumbnailKitErrorCodeFileCacheRead userInfo:@{NSUnderlyingErrorKey: outError}];
                     
                     [self.completionQueue addOperationWithBlock:^{
-                        completion(self,nil,nil,error,KSOThumbnailManagerCacheTypeNone,URL,size,page,time);
+                        completion(self,nil,error,KSOThumbnailManagerCacheTypeNone,URL,size,page,time,timeRatio);
                     }];
                 }
                 else {
@@ -130,7 +138,7 @@ NSInteger const KSOThumbnailKitErrorCodeFileCacheRead = 1;
                         NSError *error = [NSError errorWithDomain:KSOThumbnailKitErrorDomain code:KSOThumbnailKitErrorCodeFileCacheDecode userInfo:nil];
                         
                         [self.completionQueue addOperationWithBlock:^{
-                            completion(self,nil,nil,error,KSOThumbnailManagerCacheTypeNone,URL,size,page,time);
+                            completion(self,nil,error,KSOThumbnailManagerCacheTypeNone,URL,size,page,time,timeRatio);
                         }];
                     }
                     else {
@@ -139,7 +147,7 @@ NSInteger const KSOThumbnailKitErrorCodeFileCacheRead = 1;
                         }
                         
                         [self.completionQueue addOperationWithBlock:^{
-                            completion(self,nil,image,nil,KSOThumbnailManagerCacheTypeFile,URL,size,page,time);
+                            completion(self,image,nil,KSOThumbnailManagerCacheTypeFile,URL,size,page,time,timeRatio);
                         }];
                     }
                 }
@@ -148,13 +156,47 @@ NSInteger const KSOThumbnailKitErrorCodeFileCacheRead = 1;
         }
     }
     
-    KSOThumbnailOperationWrapper *retval = [[KSOThumbnailOperationWrapper alloc] init];
+    Class thumbnailOperationClass = [self _thumbnailOperationClassForURL:URL];
     
-    if (URL.isFileURL) {
-        
+    if (thumbnailOperationClass == Nil) {
+        return nil;
     }
-    
-    return retval;
+    else {
+        KSOThumbnailOperationWrapper *retval = [[KSOThumbnailOperationWrapper alloc] init];
+        
+        void(^completionWithCacheBlock)(KSOThumbnailManager *, KSOImage *, NSError *, KSOThumbnailManagerCacheType, NSURL *, KSOSize, NSUInteger, NSTimeInterval, CGFloat) = ^(KSOThumbnailManager *manager, KSOImage *image, NSError *error, KSOThumbnailManagerCacheType cacheType, NSURL *URL, KSOSize size, NSUInteger page, NSTimeInterval time, CGFloat timeRatio) {
+            if (self.isMemoryCachingEnabled &&
+                image != nil) {
+                
+                [self.memoryCache setObject:image forKey:[self _memoryCacheKeyForURL:URL size:size page:page time:timeRatio] cost:image.size.width * image.size.height * image.scale];
+            }
+            
+            if (self.isFileCachingEnabled &&
+                image != nil) {
+                
+                [self.fileCacheQueue addOperationWithBlock:^{
+                    NSData *data = [image KLO_hasAlpha] ? UIImagePNGRepresentation(image) : UIImageJPEGRepresentation(image, 1.0);
+                    
+                    NSError *outError;
+                    if (![data writeToURL:[self _fileCacheURLForURL:URL size:size page:page time:time] options:NSDataWritingAtomic error:&outError]) {
+                        KSTLogObject(outError);
+                    }
+                }];
+            }
+            
+            [self.completionQueue addOperationWithBlock:^{
+                completion(self,image,nil,cacheType,URL,size,page,time,timeRatio);
+            }];
+        };
+        
+        KSOBaseThumbnailOperation *thumbnailOperation = [[thumbnailOperationClass alloc] initWithManager:self URL:URL size:size page:page time:timeRatio timeRatio:timeRatio downloadProgress:downloadProgress completion:completionWithCacheBlock];
+        
+        [self.thumbnailQueue addOperation:thumbnailOperation];
+        
+        [retval setThumbnailOperation:thumbnailOperation];
+        
+        return retval;
+    }
 }
 #pragma mark Properties
 + (KSOThumbnailManager *)sharedManager {
@@ -208,6 +250,26 @@ NSInteger const KSOThumbnailKitErrorCodeFileCacheRead = 1;
 }
 - (NSURL *)_fileCacheURLForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time; {
     return [self _fileCacheURLForMemoryCacheKey:[self _memoryCacheKeyForURL:URL size:size page:page time:time]];
+}
+- (Class)_thumbnailOperationClassForURL:(NSURL *)URL; {
+    if (URL.isFileURL) {
+        if (URL.pathExtension.length > 0) {
+            NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.pathExtension, NULL);
+            
+            if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
+                return [KSOImageThumbnailOperation class];
+            }
+            else {
+                return Nil;
+            }
+        }
+        else {
+            return Nil;
+        }
+    }
+    else {
+        return Nil;
+    }
 }
 
 + (KSOSize)_defaultSize; {

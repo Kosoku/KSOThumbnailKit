@@ -15,7 +15,11 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol KSOThumbnailOperation <NSObject>
 @required
 - (void)cancel;
 @end
+
+NS_ASSUME_NONNULL_END

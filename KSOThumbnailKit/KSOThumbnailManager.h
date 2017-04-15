@@ -15,28 +15,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import <KSOThumbnailKit/KSOThumbnailKitDefines.h>
-#import <KSOThumbnailKit/KSOThumbnailOperation.h>
+#import <KSOThumbnailKit/KSOThumbnailManagerDefines.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSInteger, KSOThumbnailManagerCacheType) {
-    KSOThumbnailManagerCacheTypeNone = 0,
-    KSOThumbnailManagerCacheTypeFile,
-    KSOThumbnailManagerCacheTypeMemory
-};
-
-typedef NS_OPTIONS(NSUInteger, KSOThumbnailManagerCacheOptions) {
-    KSOThumbnailManagerCacheOptionsNone = 0,
-    KSOThumbnailManagerCacheOptionsFile = 1 << 0,
-    KSOThumbnailManagerCacheOptionsMemory = 1 << 1,
-    KSOThumbnailManagerCacheOptionsAll = KSOThumbnailManagerCacheOptionsFile | KSOThumbnailManagerCacheOptionsMemory
-};
-
-@class KSOThumbnailManager;
-
-typedef void(^KSOThumbnailManagerDownloadProgressBlock)(KSOThumbnailManager *manager, id<KSOThumbnailOperation> operation, NSURL *URL, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
-typedef void(^KSOThumbnailManagerCompletionBlock)(KSOThumbnailManager *thumbnailManager, id<KSOThumbnailOperation> _Nullable operation, KSOImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL *URL, KSOSize size, NSUInteger page, NSTimeInterval time);
 
 @interface KSOThumbnailManager : NSObject
 
@@ -63,7 +44,7 @@ typedef void(^KSOThumbnailManagerCompletionBlock)(KSOThumbnailManager *thumbnail
 
 - (void)cancelAllThumbnailOperations;
 
-- (nullable id<KSOThumbnailOperation>)thumbnailOperationWithURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time downloadProgress:(nullable KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion;
+- (nullable id<KSOThumbnailOperation>)thumbnailOperationWithURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio downloadProgress:(nullable KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion;
 
 @end
 
