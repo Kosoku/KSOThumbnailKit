@@ -61,6 +61,9 @@
         [URLs addObject:URL];
     }
     
+    [URLs addObject:[NSURL URLWithString:@"https://www.hulu.com/"]];
+    [URLs addObject:[NSURL URLWithString:@"https://arstechnica.com/"]];
+    
     [self setURLs:URLs];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];

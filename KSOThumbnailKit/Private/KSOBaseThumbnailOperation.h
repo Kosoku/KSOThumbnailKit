@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,copy,nonatomic,nullable) KSOThumbnailManagerDownloadProgressBlock downloadProgress;
 @property (readonly,copy,nonatomic) KSOThumbnailManagerCompletionBlock completion;
 
+@property (readonly,nonatomic,nullable) NSOperationQueue *privateQueue;
+
 - (instancetype)initWithManager:(KSOThumbnailManager *)manager URL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio downloadProgress:(nullable KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 

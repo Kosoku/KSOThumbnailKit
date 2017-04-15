@@ -62,4 +62,8 @@
     return NO;
 }
 
+- (NSOperationQueue *)privateQueue {
+    return nil;
+}
+
 @end

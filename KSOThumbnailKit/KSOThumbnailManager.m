@@ -18,6 +18,7 @@
 #import "KSOImageThumbnailOperation.h"
 #import "KSOMovieThumbnailOperation.h"
 #import "KSOPDFThumbnailOperation.h"
+#import "KSOHTMLThumbnailOperation.h"
 
 #import <Stanley/Stanley.h>
 #import <Loki/Loki.h>
@@ -32,6 +33,7 @@ NSInteger const KSOThumbnailKitErrorCodeImageRead = 3;
 NSInteger const KSOThumbnailKitErrorCodeImageDecode = 4;
 NSInteger const KSOThumbnailKitErrorCodeCancelled = 5;
 NSInteger const KSOThumbnailKitErrorCodeVideoDecode = 6;
+NSInteger const KSOThumbnailKitErrorCodeHTMLLoad = 7;
 
 #define KSOImageFromData(theData) ([[UIImage alloc] initWithData:theData])
 
@@ -199,7 +201,7 @@ NSInteger const KSOThumbnailKitErrorCodeVideoDecode = 6;
         
         KSOBaseThumbnailOperation *thumbnailOperation = [[thumbnailOperationClass alloc] initWithManager:self URL:URL size:size page:page time:timeRatio timeRatio:timeRatio downloadProgress:downloadProgress completion:completionWithCacheBlock];
         
-        [self.thumbnailQueue addOperation:thumbnailOperation];
+        [thumbnailOperation.privateQueue ?: self.thumbnailQueue addOperation:thumbnailOperation];
         
         [retval setThumbnailOperation:thumbnailOperation];
         
@@ -273,6 +275,9 @@ NSInteger const KSOThumbnailKitErrorCodeVideoDecode = 6;
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
                 return [KSOPDFThumbnailOperation class];
             }
+            else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML)) {
+                return [KSOHTMLThumbnailOperation class];
+            }
             else {
                 return Nil;
             }
@@ -282,7 +287,7 @@ NSInteger const KSOThumbnailKitErrorCodeVideoDecode = 6;
         }
     }
     else {
-        return Nil;
+        return [KSOHTMLThumbnailOperation class];
     }
 }
 
