@@ -7,12 +7,22 @@
 		<key>Demo-iOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
+		</dict>
+		<key>Demo-tvOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>KSOThumbnailKit-iOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>KSOThumbnailKit-tvOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -23,6 +33,16 @@
 			<true/>
 		</dict>
 		<key>07DE39F01EA14EB900CB965E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07F40F1C1EA2C57B003A180A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07F40F2F1EA2C630003A180A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

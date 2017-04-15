@@ -18,10 +18,12 @@
 #import "KSOImageThumbnailOperation.h"
 #import "KSOMovieThumbnailOperation.h"
 #import "KSOPDFThumbnailOperation.h"
-#import "KSOWebKitThumbnailOperation.h"
 #import "KSOTextThumbnailOperation.h"
 #import "KSOVimeoThumbnailOperation.h"
 #import "KSOYouTubeThumbnailOperation.h"
+#if (TARGET_OS_IOS || TARGET_OS_OSX)
+#import "KSOWebKitThumbnailOperation.h"
+#endif
 
 #import <Stanley/Stanley.h>
 #import <Loki/Loki.h>
@@ -269,9 +271,11 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
 - (Class)_thumbnailOperationClassForURL:(NSURL *)URL; {
     if (URL.isFileURL) {
         if (URL.pathExtension.length > 0) {
+#if (TARGET_OS_IOS || TARGET_OS_OSX)
             if ([@[@"ppt",@"pptx",@"doc",@"docx",@"xls",@"xlsx",@"csv",@"key",@"pages",@"numbers"] containsObject:URL.pathExtension.lowercaseString]) {
                 return [KSOWebKitThumbnailOperation class];
             }
+#endif
             
             NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.pathExtension, NULL);
             
@@ -288,7 +292,11 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
         return [KSOYouTubeThumbnailOperation class];
     }
     else {
+#if (TARGET_OS_IOS || TARGET_OS_OSX)
         return [KSOWebKitThumbnailOperation class];
+#else
+        return Nil;
+#endif
     }
 }
 - (Class)_thumbnailOperationClassForUTI:(NSString *)UTI; {
@@ -301,9 +309,11 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
         return [KSOPDFThumbnailOperation class];
     }
+#if (TARGET_OS_IOS || TARGET_OS_OSX)
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML)) {
         return [KSOWebKitThumbnailOperation class];
     }
+#endif
     else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTF) ||
              UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeRTFD) ||
              UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePlainText)) {

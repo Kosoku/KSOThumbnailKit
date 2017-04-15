@@ -10,7 +10,6 @@
 		070B493F1EA1C798006273C1 /* KSOPDFThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B493D1EA1C798006273C1 /* KSOPDFThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		070B49401EA1C798006273C1 /* KSOPDFThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B493E1EA1C798006273C1 /* KSOPDFThumbnailOperation.m */; };
 		070B49421EA1CA12006273C1 /* KSOThumbnailKitPrivateDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B49411EA1CA12006273C1 /* KSOThumbnailKitPrivateDefines.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		070B49451EA1D0A3006273C1 /* KSOWebKitThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B49431EA1D0A3006273C1 /* KSOWebKitThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		070B49461EA1D0A3006273C1 /* KSOWebKitThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B49441EA1D0A3006273C1 /* KSOWebKitThumbnailOperation.m */; };
 		070B49511EA20585006273C1 /* KSOTextThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B494F1EA20585006273C1 /* KSOTextThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		070B49521EA20585006273C1 /* KSOTextThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B49501EA20585006273C1 /* KSOTextThumbnailOperation.m */; };
@@ -52,6 +51,48 @@
 		07F40F131EA2B74E003A180A /* KSOVimeoThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F40F111EA2B74E003A180A /* KSOVimeoThumbnailOperation.m */; };
 		07F40F161EA2BD1C003A180A /* KSOYouTubeThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F40F141EA2BD1C003A180A /* KSOYouTubeThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		07F40F171EA2BD1C003A180A /* KSOYouTubeThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F40F151EA2BD1C003A180A /* KSOYouTubeThumbnailOperation.m */; };
+		07F40F271EA2C5E3003A180A /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40F261EA2C5E3003A180A /* Ditko.framework */; };
+		07F40F291EA2C5EA003A180A /* Loki.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40F281EA2C5EA003A180A /* Loki.framework */; };
+		07F40F2B1EA2C5EF003A180A /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40F2A1EA2C5EF003A180A /* Stanley.framework */; };
+		07F40F341EA2C630003A180A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F40F331EA2C630003A180A /* main.m */; };
+		07F40F371EA2C630003A180A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F40F361EA2C630003A180A /* AppDelegate.m */; };
+		07F40F3A1EA2C630003A180A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F40F391EA2C630003A180A /* ViewController.m */; };
+		07F40F3D1EA2C630003A180A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07F40F3B1EA2C630003A180A /* Main.storyboard */; };
+		07F40F3F1EA2C630003A180A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07F40F3E1EA2C630003A180A /* Assets.xcassets */; };
+		07F40F451EA2C63E003A180A /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40F441EA2C63E003A180A /* Ditko.framework */; };
+		07F40F461EA2C63E003A180A /* Ditko.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40F441EA2C63E003A180A /* Ditko.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07F40F491EA2C645003A180A /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40F481EA2C645003A180A /* Stanley.framework */; };
+		07F40F4A1EA2C645003A180A /* Stanley.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40F481EA2C645003A180A /* Stanley.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07F40F4C1EA2C64C003A180A /* Loki.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40F4B1EA2C64C003A180A /* Loki.framework */; };
+		07F40F4D1EA2C64C003A180A /* Loki.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40F4B1EA2C64C003A180A /* Loki.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07F40F4E1EA2C653003A180A /* KSOThumbnailKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40F1D1EA2C57B003A180A /* KSOThumbnailKit.framework */; };
+		07F40F4F1EA2C653003A180A /* KSOThumbnailKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F40F1D1EA2C57B003A180A /* KSOThumbnailKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07F40F521EA2C686003A180A /* KSOThumbnailKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DE39DE1EA1495F00CB965E /* KSOThumbnailKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07F40F531EA2C686003A180A /* KSOThumbnailKitDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DE39EB1EA14D3700CB965E /* KSOThumbnailKitDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07F40F541EA2C686003A180A /* KSOThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D86F91EA1756F00666FB1 /* KSOThumbnailOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07F40F551EA2C686003A180A /* KSOThumbnailManagerDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87041EA19EFE00666FB1 /* KSOThumbnailManagerDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07F40F561EA2C686003A180A /* KSOThumbnailManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DE39E71EA14B6A00CB965E /* KSOThumbnailManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07F40F571EA2C69B003A180A /* KSOThumbnailManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DE39E81EA14B6A00CB965E /* KSOThumbnailManager.m */; };
+		07F40F581EA2C69B003A180A /* KSOThumbnailOperationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D86FD1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.m */; };
+		07F40F591EA2C69B003A180A /* KSOBaseThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D87011EA181E400666FB1 /* KSOBaseThumbnailOperation.m */; };
+		07F40F5A1EA2C69B003A180A /* KSOAsynchronousThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D87161EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.m */; };
+		07F40F5B1EA2C69B003A180A /* KSOImageThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D87071EA1A24100666FB1 /* KSOImageThumbnailOperation.m */; };
+		07F40F5C1EA2C69B003A180A /* KSOMovieThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D87121EA1BC0500666FB1 /* KSOMovieThumbnailOperation.m */; };
+		07F40F5D1EA2C69B003A180A /* KSOPDFThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B493E1EA1C798006273C1 /* KSOPDFThumbnailOperation.m */; };
+		07F40F5F1EA2C69B003A180A /* KSOTextThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B49501EA20585006273C1 /* KSOTextThumbnailOperation.m */; };
+		07F40F601EA2C69B003A180A /* KSOVimeoThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F40F111EA2B74E003A180A /* KSOVimeoThumbnailOperation.m */; };
+		07F40F611EA2C69B003A180A /* KSOYouTubeThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F40F151EA2BD1C003A180A /* KSOYouTubeThumbnailOperation.m */; };
+		07F40F621EA2C6A8003A180A /* KSOThumbnailKitPrivateDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B49411EA1CA12006273C1 /* KSOThumbnailKitPrivateDefines.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07F40F631EA2C6A8003A180A /* KSOThumbnailOperationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D86FC1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07F40F641EA2C6A8003A180A /* KSOBaseThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87001EA181E400666FB1 /* KSOBaseThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07F40F651EA2C6A8003A180A /* KSOAsynchronousThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87151EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07F40F661EA2C6A8003A180A /* KSOImageThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87061EA1A24100666FB1 /* KSOImageThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07F40F671EA2C6A8003A180A /* KSOMovieThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87111EA1BC0500666FB1 /* KSOMovieThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07F40F681EA2C6A8003A180A /* KSOPDFThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B493D1EA1C798006273C1 /* KSOPDFThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07F40F6A1EA2C6A8003A180A /* KSOTextThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B494F1EA20585006273C1 /* KSOTextThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07F40F6B1EA2C6A8003A180A /* KSOVimeoThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F40F101EA2B74E003A180A /* KSOVimeoThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07F40F6C1EA2C6A8003A180A /* KSOYouTubeThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F40F141EA2BD1C003A180A /* KSOYouTubeThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		07F40F6D1EA2C717003A180A /* KSOWebKitThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B49431EA1D0A3006273C1 /* KSOWebKitThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +102,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 07DE39DA1EA1495F00CB965E;
 			remoteInfo = "KSOThumbnailKit-iOS";
+		};
+		07F40F501EA2C653003A180A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07DE39D01EA148F000CB965E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07F40F1C1EA2C57B003A180A;
+			remoteInfo = "KSOThumbnailKit-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -75,6 +123,20 @@
 				07DE3A091EA14ECA00CB965E /* KSOThumbnailKit.framework in Embed Frameworks */,
 				070D87101EA1B78700666FB1 /* Ditko.framework in Embed Frameworks */,
 				07DE3A141EA158D500CB965E /* Stanley.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F40F471EA2C63E003A180A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				07F40F4D1EA2C64C003A180A /* Loki.framework in Embed Frameworks */,
+				07F40F461EA2C63E003A180A /* Ditko.framework in Embed Frameworks */,
+				07F40F4F1EA2C653003A180A /* KSOThumbnailKit.framework in Embed Frameworks */,
+				07F40F4A1EA2C645003A180A /* Stanley.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +191,23 @@
 		07F40F111EA2B74E003A180A /* KSOVimeoThumbnailOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOVimeoThumbnailOperation.m; sourceTree = "<group>"; };
 		07F40F141EA2BD1C003A180A /* KSOYouTubeThumbnailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOYouTubeThumbnailOperation.h; sourceTree = "<group>"; };
 		07F40F151EA2BD1C003A180A /* KSOYouTubeThumbnailOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOYouTubeThumbnailOperation.m; sourceTree = "<group>"; };
+		07F40F1D1EA2C57B003A180A /* KSOThumbnailKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSOThumbnailKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F40F251EA2C5BC003A180A /* KSOThumbnailKit-tvOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KSOThumbnailKit-tvOS-Info.plist"; sourceTree = "<group>"; };
+		07F40F261EA2C5E3003A180A /* Ditko.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ditko.framework; path = "Vendor/Ditko/build/Debug-appletvos/Ditko.framework"; sourceTree = "<group>"; };
+		07F40F281EA2C5EA003A180A /* Loki.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Loki.framework; path = "Vendor/Loki/build/Debug-appletvos/Loki.framework"; sourceTree = "<group>"; };
+		07F40F2A1EA2C5EF003A180A /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "Vendor/Stanley/build/Debug-appletvos/Stanley.framework"; sourceTree = "<group>"; };
+		07F40F301EA2C630003A180A /* Demo-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F40F331EA2C630003A180A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		07F40F351EA2C630003A180A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		07F40F361EA2C630003A180A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		07F40F381EA2C630003A180A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		07F40F391EA2C630003A180A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		07F40F3C1EA2C630003A180A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		07F40F3E1EA2C630003A180A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		07F40F401EA2C630003A180A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07F40F441EA2C63E003A180A /* Ditko.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Ditko.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F40F481EA2C645003A180A /* Stanley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stanley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F40F4B1EA2C64C003A180A /* Loki.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loki.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +229,27 @@
 				07DE3A081EA14ECA00CB965E /* KSOThumbnailKit.framework in Frameworks */,
 				070D870F1EA1B78700666FB1 /* Ditko.framework in Frameworks */,
 				07DE3A131EA158D500CB965E /* Stanley.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F40F191EA2C57B003A180A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07F40F2B1EA2C5EF003A180A /* Stanley.framework in Frameworks */,
+				07F40F291EA2C5EA003A180A /* Loki.framework in Frameworks */,
+				07F40F271EA2C5E3003A180A /* Ditko.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F40F2D1EA2C630003A180A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07F40F4C1EA2C64C003A180A /* Loki.framework in Frameworks */,
+				07F40F451EA2C63E003A180A /* Ditko.framework in Frameworks */,
+				07F40F4E1EA2C653003A180A /* KSOThumbnailKit.framework in Frameworks */,
+				07F40F491EA2C645003A180A /* Stanley.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +289,7 @@
 			children = (
 				07DE39DD1EA1495F00CB965E /* KSOThumbnailKit */,
 				07DE39F21EA14EB900CB965E /* Demo-iOS */,
+				07F40F311EA2C630003A180A /* Demo-tvOS */,
 				07DE39DC1EA1495F00CB965E /* Products */,
 				07DE3A0D1EA158C900CB965E /* Frameworks */,
 			);
@@ -199,6 +300,8 @@
 			children = (
 				07DE39DB1EA1495F00CB965E /* KSOThumbnailKit.framework */,
 				07DE39F11EA14EB900CB965E /* Demo-iOS.app */,
+				07F40F1D1EA2C57B003A180A /* KSOThumbnailKit.framework */,
+				07F40F301EA2C630003A180A /* Demo-tvOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				07DE39DF1EA1495F00CB965E /* KSOThumbnailKit-iOS-Info.plist */,
+				07F40F251EA2C5BC003A180A /* KSOThumbnailKit-tvOS-Info.plist */,
 				07DE39E51EA149B500CB965E /* KSOThumbnailKit-Info.h */,
 			);
 			name = "Supporting Files";
@@ -263,6 +367,12 @@
 		07DE3A0D1EA158C900CB965E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07F40F4B1EA2C64C003A180A /* Loki.framework */,
+				07F40F481EA2C645003A180A /* Stanley.framework */,
+				07F40F441EA2C63E003A180A /* Ditko.framework */,
+				07F40F2A1EA2C5EF003A180A /* Stanley.framework */,
+				07F40F281EA2C5EA003A180A /* Loki.framework */,
+				07F40F261EA2C5E3003A180A /* Ditko.framework */,
 				070D870E1EA1B78700666FB1 /* Ditko.framework */,
 				070D870C1EA1B78000666FB1 /* Ditko.framework */,
 				07DE3A121EA158D500CB965E /* Stanley.framework */,
@@ -271,6 +381,29 @@
 				07DE3A0E1EA158C900CB965E /* Loki.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		07F40F311EA2C630003A180A /* Demo-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				07F40F351EA2C630003A180A /* AppDelegate.h */,
+				07F40F361EA2C630003A180A /* AppDelegate.m */,
+				07F40F381EA2C630003A180A /* ViewController.h */,
+				07F40F391EA2C630003A180A /* ViewController.m */,
+				07F40F3B1EA2C630003A180A /* Main.storyboard */,
+				07F40F3E1EA2C630003A180A /* Assets.xcassets */,
+				07F40F401EA2C630003A180A /* Info.plist */,
+				07F40F321EA2C630003A180A /* Supporting Files */,
+			);
+			path = "Demo-tvOS";
+			sourceTree = "<group>";
+		};
+		07F40F321EA2C630003A180A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				07F40F331EA2C630003A180A /* main.m */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,11 +424,33 @@
 				070D86FA1EA1756F00666FB1 /* KSOThumbnailOperation.h in Headers */,
 				070D87171EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.h in Headers */,
 				070D87051EA19EFE00666FB1 /* KSOThumbnailManagerDefines.h in Headers */,
+				07F40F6D1EA2C717003A180A /* KSOWebKitThumbnailOperation.h in Headers */,
 				070D87081EA1A24100666FB1 /* KSOImageThumbnailOperation.h in Headers */,
-				070B49451EA1D0A3006273C1 /* KSOWebKitThumbnailOperation.h in Headers */,
 				070D87131EA1BC0500666FB1 /* KSOMovieThumbnailOperation.h in Headers */,
 				070B493F1EA1C798006273C1 /* KSOPDFThumbnailOperation.h in Headers */,
 				07F40F121EA2B74E003A180A /* KSOVimeoThumbnailOperation.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F40F1A1EA2C57B003A180A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07F40F551EA2C686003A180A /* KSOThumbnailManagerDefines.h in Headers */,
+				07F40F541EA2C686003A180A /* KSOThumbnailOperation.h in Headers */,
+				07F40F6C1EA2C6A8003A180A /* KSOYouTubeThumbnailOperation.h in Headers */,
+				07F40F561EA2C686003A180A /* KSOThumbnailManager.h in Headers */,
+				07F40F6A1EA2C6A8003A180A /* KSOTextThumbnailOperation.h in Headers */,
+				07F40F661EA2C6A8003A180A /* KSOImageThumbnailOperation.h in Headers */,
+				07F40F681EA2C6A8003A180A /* KSOPDFThumbnailOperation.h in Headers */,
+				07F40F621EA2C6A8003A180A /* KSOThumbnailKitPrivateDefines.h in Headers */,
+				07F40F521EA2C686003A180A /* KSOThumbnailKit.h in Headers */,
+				07F40F631EA2C6A8003A180A /* KSOThumbnailOperationWrapper.h in Headers */,
+				07F40F651EA2C6A8003A180A /* KSOAsynchronousThumbnailOperation.h in Headers */,
+				07F40F641EA2C6A8003A180A /* KSOBaseThumbnailOperation.h in Headers */,
+				07F40F671EA2C6A8003A180A /* KSOMovieThumbnailOperation.h in Headers */,
+				07F40F531EA2C686003A180A /* KSOThumbnailKitDefines.h in Headers */,
+				07F40F6B1EA2C6A8003A180A /* KSOVimeoThumbnailOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +494,43 @@
 			productReference = 07DE39F11EA14EB900CB965E /* Demo-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		07F40F1C1EA2C57B003A180A /* KSOThumbnailKit-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07F40F221EA2C57C003A180A /* Build configuration list for PBXNativeTarget "KSOThumbnailKit-tvOS" */;
+			buildPhases = (
+				07F40F181EA2C57B003A180A /* Sources */,
+				07F40F191EA2C57B003A180A /* Frameworks */,
+				07F40F1A1EA2C57B003A180A /* Headers */,
+				07F40F1B1EA2C57B003A180A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KSOThumbnailKit-tvOS";
+			productName = "KSOThumbnailKit-tvOS";
+			productReference = 07F40F1D1EA2C57B003A180A /* KSOThumbnailKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		07F40F2F1EA2C630003A180A /* Demo-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07F40F411EA2C630003A180A /* Build configuration list for PBXNativeTarget "Demo-tvOS" */;
+			buildPhases = (
+				07F40F2C1EA2C630003A180A /* Sources */,
+				07F40F2D1EA2C630003A180A /* Frameworks */,
+				07F40F2E1EA2C630003A180A /* Resources */,
+				07F40F471EA2C63E003A180A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07F40F511EA2C653003A180A /* PBXTargetDependency */,
+			);
+			name = "Demo-tvOS";
+			productName = "Demo-tvOS";
+			productReference = 07F40F301EA2C630003A180A /* Demo-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -358,6 +550,14 @@
 						DevelopmentTeam = C6AZ27TEW2;
 						ProvisioningStyle = Automatic;
 					};
+					07F40F1C1EA2C57B003A180A = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+					};
+					07F40F2F1EA2C630003A180A = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 07DE39D31EA148F000CB965E /* Build configuration list for PBXProject "KSOThumbnailKit" */;
@@ -374,7 +574,9 @@
 			projectRoot = "";
 			targets = (
 				07DE39DA1EA1495F00CB965E /* KSOThumbnailKit-iOS */,
+				07F40F1C1EA2C57B003A180A /* KSOThumbnailKit-tvOS */,
 				07DE39F01EA14EB900CB965E /* Demo-iOS */,
+				07F40F2F1EA2C630003A180A /* Demo-tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -395,6 +597,22 @@
 				070D870B1EA1B00100666FB1 /* media in Resources */,
 				07DE3A001EA14EB900CB965E /* Assets.xcassets in Resources */,
 				07DE39FE1EA14EB900CB965E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F40F1B1EA2C57B003A180A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F40F2E1EA2C630003A180A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07F40F3F1EA2C630003A180A /* Assets.xcassets in Resources */,
+				07F40F3D1EA2C630003A180A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +647,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		07F40F181EA2C57B003A180A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07F40F611EA2C69B003A180A /* KSOYouTubeThumbnailOperation.m in Sources */,
+				07F40F5A1EA2C69B003A180A /* KSOAsynchronousThumbnailOperation.m in Sources */,
+				07F40F581EA2C69B003A180A /* KSOThumbnailOperationWrapper.m in Sources */,
+				07F40F571EA2C69B003A180A /* KSOThumbnailManager.m in Sources */,
+				07F40F5D1EA2C69B003A180A /* KSOPDFThumbnailOperation.m in Sources */,
+				07F40F5C1EA2C69B003A180A /* KSOMovieThumbnailOperation.m in Sources */,
+				07F40F5B1EA2C69B003A180A /* KSOImageThumbnailOperation.m in Sources */,
+				07F40F591EA2C69B003A180A /* KSOBaseThumbnailOperation.m in Sources */,
+				07F40F5F1EA2C69B003A180A /* KSOTextThumbnailOperation.m in Sources */,
+				07F40F601EA2C69B003A180A /* KSOVimeoThumbnailOperation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F40F2C1EA2C630003A180A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07F40F3A1EA2C630003A180A /* ViewController.m in Sources */,
+				07F40F371EA2C630003A180A /* AppDelegate.m in Sources */,
+				07F40F341EA2C630003A180A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -436,6 +681,11 @@
 			isa = PBXTargetDependency;
 			target = 07DE39DA1EA1495F00CB965E /* KSOThumbnailKit-iOS */;
 			targetProxy = 07DE3A0A1EA14ECA00CB965E /* PBXContainerItemProxy */;
+		};
+		07F40F511EA2C653003A180A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07F40F1C1EA2C57B003A180A /* KSOThumbnailKit-tvOS */;
+			targetProxy = 07F40F501EA2C653003A180A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -454,6 +704,14 @@
 				07DE3A021EA14EB900CB965E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		07F40F3B1EA2C630003A180A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07F40F3C1EA2C630003A180A /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -711,6 +969,242 @@
 			};
 			name = Release;
 		};
+		07F40F231EA2C57C003A180A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/Ditko/build/Debug-appletvos",
+					"$(PROJECT_DIR)/Vendor/Loki/build/Debug-appletvos",
+					"$(PROJECT_DIR)/Vendor/Stanley/build/Debug-appletvos",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/KSOThumbnailKit/KSOThumbnailKit-tvOS-Info.plist";
+				INFOPLIST_PREFIX_HEADER = "$(SRCROOT)/KSOThumbnailKit/KSOThumbnailKit-Info.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kosoku.ksothumbnailkit;
+				PRODUCT_NAME = KSOThumbnailKit;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		07F40F241EA2C57C003A180A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/Ditko/build/Debug-appletvos",
+					"$(PROJECT_DIR)/Vendor/Loki/build/Debug-appletvos",
+					"$(PROJECT_DIR)/Vendor/Stanley/build/Debug-appletvos",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/KSOThumbnailKit/KSOThumbnailKit-tvOS-Info.plist";
+				INFOPLIST_PREFIX_HEADER = "$(SRCROOT)/KSOThumbnailKit/KSOThumbnailKit-Info.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kosoku.ksothumbnailkit;
+				PRODUCT_NAME = KSOThumbnailKit;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		07F40F421EA2C630003A180A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Demo-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kosoku.Demo-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Debug;
+		};
+		07F40F431EA2C630003A180A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Demo-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kosoku.Demo-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -740,6 +1234,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		07F40F221EA2C57C003A180A /* Build configuration list for PBXNativeTarget "KSOThumbnailKit-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07F40F231EA2C57C003A180A /* Debug */,
+				07F40F241EA2C57C003A180A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		07F40F411EA2C630003A180A /* Build configuration list for PBXNativeTarget "Demo-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07F40F421EA2C630003A180A /* Debug */,
+				07F40F431EA2C630003A180A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
