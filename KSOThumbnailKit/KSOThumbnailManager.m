@@ -49,6 +49,7 @@ NSInteger const KSOThumbnailKitErrorCodeHTMLLoad = 7;
 - (NSURL *)_fileCacheURLForMemoryCacheKey:(NSString *)key;
 - (NSURL *)_fileCacheURLForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time;
 - (Class)_thumbnailOperationClassForURL:(NSURL *)URL;
+- (Class)_thumbnailOperationClassForUTI:(NSString *)UTI;
 
 + (KSOSize)_defaultSize;
 + (NSUInteger)_defaultPage;
@@ -201,9 +202,9 @@ NSInteger const KSOThumbnailKitErrorCodeHTMLLoad = 7;
         
         KSOBaseThumbnailOperation *thumbnailOperation = [[thumbnailOperationClass alloc] initWithManager:self URL:URL size:size page:page time:timeRatio timeRatio:timeRatio downloadProgress:downloadProgress completion:completionWithCacheBlock];
         
-        [thumbnailOperation.privateQueue ?: self.thumbnailQueue addOperation:thumbnailOperation];
-        
         [retval setThumbnailOperation:thumbnailOperation];
+        
+        [thumbnailOperation.privateQueue ?: self.thumbnailQueue addOperation:thumbnailOperation];
         
         return retval;
     }
@@ -264,23 +265,13 @@ NSInteger const KSOThumbnailKitErrorCodeHTMLLoad = 7;
 - (Class)_thumbnailOperationClassForURL:(NSURL *)URL; {
     if (URL.isFileURL) {
         if (URL.pathExtension.length > 0) {
-            NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.pathExtension, NULL);
-            
-            if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
-                return [KSOImageThumbnailOperation class];
-            }
-            else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
-                return [KSOMovieThumbnailOperation class];
-            }
-            else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
-                return [KSOPDFThumbnailOperation class];
-            }
-            else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML)) {
+            if ([@[@"ppt",@"pptx",@"doc",@"docx",@"xls",@"xlsx",@"csv",@"key",@"pages",@"numbers"] containsObject:URL.pathExtension.lowercaseString]) {
                 return [KSOHTMLThumbnailOperation class];
             }
-            else {
-                return Nil;
-            }
+            
+            NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)URL.pathExtension, NULL);
+            
+            return [self _thumbnailOperationClassForUTI:UTI];
         }
         else {
             return Nil;
@@ -288,6 +279,23 @@ NSInteger const KSOThumbnailKitErrorCodeHTMLLoad = 7;
     }
     else {
         return [KSOHTMLThumbnailOperation class];
+    }
+}
+- (Class)_thumbnailOperationClassForUTI:(NSString *)UTI; {
+    if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
+        return [KSOImageThumbnailOperation class];
+    }
+    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
+        return [KSOMovieThumbnailOperation class];
+    }
+    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
+        return [KSOPDFThumbnailOperation class];
+    }
+    else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeHTML)) {
+        return [KSOHTMLThumbnailOperation class];
+    }
+    else {
+        return Nil;
     }
 }
 
