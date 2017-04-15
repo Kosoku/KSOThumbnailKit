@@ -25,7 +25,6 @@
 @property (readwrite,assign,nonatomic) NSUInteger page;
 @property (readwrite,assign,nonatomic) NSTimeInterval time;
 @property (readwrite,assign,nonatomic) CGFloat timeRatio;
-@property (readwrite,copy,nonatomic,nullable) KSOThumbnailManagerDownloadProgressBlock downloadProgress;
 @property (readwrite,copy,nonatomic) KSOThumbnailManagerCompletionBlock completion;
 @end
 
@@ -35,7 +34,7 @@
     KSTLogObject(NSStringFromClass(self.class));
 }
 
-- (instancetype)initWithManager:(KSOThumbnailManager *)manager URL:(NSURL *)URL size:(CGSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio downloadProgress:(KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion {
+- (instancetype)initWithManager:(KSOThumbnailManager *)manager URL:(NSURL *)URL size:(CGSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio completion:(KSOThumbnailManagerCompletionBlock)completion {
     if (!(self = [super init]))
         return nil;
     
@@ -45,7 +44,6 @@
     _page = page;
     _time = time;
     _timeRatio = timeRatio;
-    _downloadProgress = [downloadProgress copy];
     _completion = [completion copy];
     
     return self;

@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)cancelAllThumbnailOperations;
 
-- (nullable id<KSOThumbnailOperation>)thumbnailOperationForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio downloadProgress:(nullable KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion;
+- (nullable id<KSOThumbnailOperation>)thumbnailOperationForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio completion:(KSOThumbnailManagerCompletionBlock)completion;
 
 @end
 

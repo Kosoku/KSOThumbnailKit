@@ -36,7 +36,6 @@ typedef NS_OPTIONS(NSUInteger, KSOThumbnailManagerCacheOptions) {
 
 @class KSOThumbnailManager;
 
-typedef void(^KSOThumbnailManagerDownloadProgressBlock)(KSOThumbnailManager *manager, NSURL *URL, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
 typedef void(^KSOThumbnailManagerCompletionBlock)(KSOThumbnailManager *thumbnailManager, KSOImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL *URL, KSOSize size, NSUInteger page, NSTimeInterval time, CGFloat timeRatio);
 
 NS_ASSUME_NONNULL_END

@@ -94,7 +94,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([CollectionViewCell class]) forIndexPath:indexPath];
     
-    [KSOThumbnailManager.sharedManager thumbnailOperationForURL:self.URLs[indexPath.row] size:KSOThumbnailManager.sharedManager.defaultSize page:KSOThumbnailManager.sharedManager.defaultPage time:KSOThumbnailManager.sharedManager.defaultTime timeRatio:KSOThumbnailManager.sharedManager.defaultTimeRatio downloadProgress:nil completion:^(KSOThumbnailManager * _Nonnull thumbnailManager, UIImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSUInteger page, NSTimeInterval time, CGFloat timeRatio) {
+    [KSOThumbnailManager.sharedManager thumbnailOperationForURL:self.URLs[indexPath.row] size:KSOThumbnailManager.sharedManager.defaultSize page:KSOThumbnailManager.sharedManager.defaultPage time:KSOThumbnailManager.sharedManager.defaultTime timeRatio:KSOThumbnailManager.sharedManager.defaultTimeRatio completion:^(KSOThumbnailManager * _Nonnull thumbnailManager, UIImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSUInteger page, NSTimeInterval time, CGFloat timeRatio) {
         CollectionViewCell *cell = (CollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
         
         [cell.imageView setImage:image];

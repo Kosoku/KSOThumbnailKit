@@ -27,12 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,assign,nonatomic) NSUInteger page;
 @property (readonly,assign,nonatomic) NSTimeInterval time;
 @property (readonly,assign,nonatomic) CGFloat timeRatio;
-@property (readonly,copy,nonatomic,nullable) KSOThumbnailManagerDownloadProgressBlock downloadProgress;
 @property (readonly,copy,nonatomic) KSOThumbnailManagerCompletionBlock completion;
 
 @property (readonly,nonatomic,nullable) NSOperationQueue *privateQueue;
 
-- (instancetype)initWithManager:(KSOThumbnailManager *)manager URL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio downloadProgress:(nullable KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithManager:(KSOThumbnailManager *)manager URL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio completion:(KSOThumbnailManagerCompletionBlock)completion NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
 - (BOOL)checkCancelledAndInvokeCompletion NS_REQUIRES_SUPER;

@@ -82,7 +82,7 @@
 - (NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath {
     CollectionViewItem *item = [collectionView makeItemWithIdentifier:NSStringFromClass([CollectionViewItem class]) forIndexPath:indexPath];
     
-    [KSOThumbnailManager.sharedManager thumbnailOperationForURL:self.URLs[[indexPath indexAtPosition:1]] size:KSOThumbnailManager.sharedManager.defaultSize page:KSOThumbnailManager.sharedManager.defaultPage time:KSOThumbnailManager.sharedManager.defaultTime timeRatio:KSOThumbnailManager.sharedManager.defaultTimeRatio downloadProgress:nil completion:^(KSOThumbnailManager * _Nonnull thumbnailManager, NSImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSUInteger page, NSTimeInterval time, CGFloat timeRatio) {
+    [KSOThumbnailManager.sharedManager thumbnailOperationForURL:self.URLs[[indexPath indexAtPosition:1]] size:KSOThumbnailManager.sharedManager.defaultSize page:KSOThumbnailManager.sharedManager.defaultPage time:KSOThumbnailManager.sharedManager.defaultTime timeRatio:KSOThumbnailManager.sharedManager.defaultTimeRatio completion:^(KSOThumbnailManager * _Nonnull thumbnailManager, NSImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSUInteger page, NSTimeInterval time, CGFloat timeRatio) {
         NSLog(@"%@ %@",URL,@(cacheType));
         CollectionViewItem *cell = (CollectionViewItem *)[self.collectionView itemAtIndexPath:indexPath];
         

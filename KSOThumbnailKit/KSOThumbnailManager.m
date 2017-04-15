@@ -118,7 +118,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     [self.thumbnailQueue cancelAllOperations];
 }
 
-- (id<KSOThumbnailOperation>)thumbnailOperationForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio downloadProgress:(KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion; {
+- (id<KSOThumbnailOperation>)thumbnailOperationForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio completion:(KSOThumbnailManagerCompletionBlock)completion; {
     NSParameterAssert(URL != nil);
     NSParameterAssert(size.width > 0.0 && size.height > 0);
     NSParameterAssert(page >= 0);
@@ -228,7 +228,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
             }];
         };
         
-        KSOBaseThumbnailOperation *thumbnailOperation = [[thumbnailOperationClass alloc] initWithManager:self URL:URL size:size page:page time:time timeRatio:timeRatio downloadProgress:downloadProgress completion:completionWithCacheBlock];
+        KSOBaseThumbnailOperation *thumbnailOperation = [[thumbnailOperationClass alloc] initWithManager:self URL:URL size:size page:page time:time timeRatio:timeRatio completion:completionWithCacheBlock];
         
         [retval setThumbnailOperation:thumbnailOperation];
         
