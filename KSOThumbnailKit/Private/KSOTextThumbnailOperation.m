@@ -15,7 +15,6 @@
 
 #import "KSOTextThumbnailOperation.h"
 #import "KSOThumbnailKitDefines.h"
-#import "KSOThumbnailKitPrivateDefines.h"
 
 #import <Loki/Loki.h>
 #import <Ditko/Ditko.h>

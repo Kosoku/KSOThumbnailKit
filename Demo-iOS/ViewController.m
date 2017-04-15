@@ -61,7 +61,7 @@
         [URLs addObject:URL];
     }
     
-    [URLs addObject:[NSURL URLWithString:@"https://commons.wikimedia.org/wiki/File:Rhodium_78g_sample.jpg"]];
+    [URLs addObject:[NSURL URLWithString:@"https://vimeo.com/43476107"]];
     [URLs addObject:[NSURL URLWithString:@"https://www.hulu.com/"]];
     [URLs addObject:[NSURL URLWithString:@"https://arstechnica.com/"]];
     

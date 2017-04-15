@@ -20,6 +20,7 @@
 #import "KSOPDFThumbnailOperation.h"
 #import "KSOHTMLThumbnailOperation.h"
 #import "KSOTextThumbnailOperation.h"
+#import "KSOVimeoThumbnailOperation.h"
 
 #import <Stanley/Stanley.h>
 #import <Loki/Loki.h>
@@ -278,6 +279,9 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
         else {
             return Nil;
         }
+    }
+    else if ([URL.host isEqualToString:@"vimeo.com"]) {
+        return [KSOVimeoThumbnailOperation class];
     }
     else {
         return [KSOHTMLThumbnailOperation class];

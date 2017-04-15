@@ -48,6 +48,8 @@
 		07DE3A141EA158D500CB965E /* Stanley.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07DE3A121EA158D500CB965E /* Stanley.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07DE3A161EA158DB00CB965E /* Loki.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DE3A151EA158DB00CB965E /* Loki.framework */; };
 		07DE3A171EA158DB00CB965E /* Loki.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07DE3A151EA158DB00CB965E /* Loki.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07F40F121EA2B74E003A180A /* KSOVimeoThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F40F101EA2B74E003A180A /* KSOVimeoThumbnailOperation.h */; };
+		07F40F131EA2B74E003A180A /* KSOVimeoThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F40F111EA2B74E003A180A /* KSOVimeoThumbnailOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +123,8 @@
 		07DE3A101EA158CF00CB965E /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "Vendor/Stanley/build/Debug-iphoneos/Stanley.framework"; sourceTree = "<group>"; };
 		07DE3A121EA158D500CB965E /* Stanley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stanley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DE3A151EA158DB00CB965E /* Loki.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loki.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F40F101EA2B74E003A180A /* KSOVimeoThumbnailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOVimeoThumbnailOperation.h; sourceTree = "<group>"; };
+		07F40F111EA2B74E003A180A /* KSOVimeoThumbnailOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOVimeoThumbnailOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,8 @@
 				070B49441EA1D0A3006273C1 /* KSOHTMLThumbnailOperation.m */,
 				070B494F1EA20585006273C1 /* KSOTextThumbnailOperation.h */,
 				070B49501EA20585006273C1 /* KSOTextThumbnailOperation.m */,
+				07F40F101EA2B74E003A180A /* KSOVimeoThumbnailOperation.h */,
+				07F40F111EA2B74E003A180A /* KSOVimeoThumbnailOperation.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -282,6 +288,7 @@
 				070B49451EA1D0A3006273C1 /* KSOHTMLThumbnailOperation.h in Headers */,
 				070D87131EA1BC0500666FB1 /* KSOMovieThumbnailOperation.h in Headers */,
 				070B493F1EA1C798006273C1 /* KSOPDFThumbnailOperation.h in Headers */,
+				07F40F121EA2B74E003A180A /* KSOVimeoThumbnailOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +407,7 @@
 				070B49521EA20585006273C1 /* KSOTextThumbnailOperation.m in Sources */,
 				07DE39EA1EA14B6A00CB965E /* KSOThumbnailManager.m in Sources */,
 				070D87031EA181E400666FB1 /* KSOBaseThumbnailOperation.m in Sources */,
+				07F40F131EA2B74E003A180A /* KSOVimeoThumbnailOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
