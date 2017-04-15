@@ -35,6 +35,7 @@ NSInteger const KSOThumbnailKitErrorCodeImageDecode = 4;
 NSInteger const KSOThumbnailKitErrorCodeCancelled = 5;
 NSInteger const KSOThumbnailKitErrorCodeVideoDecode = 6;
 NSInteger const KSOThumbnailKitErrorCodeHTMLLoad = 7;
+NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
 
 #define KSOImageFromData(theData) ([[UIImage alloc] initWithData:theData])
 
@@ -109,7 +110,7 @@ NSInteger const KSOThumbnailKitErrorCodeHTMLLoad = 7;
     [self.thumbnailQueue cancelAllOperations];
 }
 
-- (id<KSOThumbnailOperation>)thumbnailOperationWithURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio downloadProgress:(KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion; {
+- (id<KSOThumbnailOperation>)thumbnailOperationForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio downloadProgress:(KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion; {
     NSParameterAssert(URL != nil);
     NSParameterAssert(size.width > 0.0 && size.height > 0);
     NSParameterAssert(page >= 0);

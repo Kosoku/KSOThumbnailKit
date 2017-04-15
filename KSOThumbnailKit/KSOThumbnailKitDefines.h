@@ -51,5 +51,6 @@ FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeImageDecode;
 FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeCancelled;
 FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeVideoDecode;
 FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeHTMLLoad;
+FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeRTFDecode;
 
 #endif
