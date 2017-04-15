@@ -1,5 +1,5 @@
 //
-//  KSOThumbnailKitDefines.h
+//  KSOConcurrentThumbnailOperation.h
 //  KSOThumbnailKit
 //
 //  Created by William Towe on 4/14/17.
@@ -13,42 +13,13 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef __KSO_THUMBNAIL_KIT_DEFINES__
-#define __KSO_THUMBNAIL_KIT_DEFINES__
+#import "KSOBaseThumbnailOperation.h"
 
-#import <TargetConditionals.h>
-#if (TARGET_OS_IPHONE)
-#import <UIKit/UIKit.h>
-#else
-#import <AppKit/AppKit.h>
-#endif
+@interface KSOAsynchronousThumbnailOperation : KSOBaseThumbnailOperation
 
-#if (TARGET_OS_IPHONE)
-#ifndef KSOSize
-#define KSOSize CGSize
-#endif
-#ifndef KSOImage
-#define KSOImage UIImage
-#endif
+@property (assign,nonatomic,getter=isExecuting) BOOL executing;
+@property (assign,nonatomic,getter=isFinished) BOOL finished;
 
-#else
+- (void)main NS_REQUIRES_SUPER;
 
-#ifndef KSOSize
-#define KSOSize NSSize
-#endif
-#ifndef KSOImage
-#define KSOImage NSImage
-#endif
-
-#endif
-
-FOUNDATION_EXPORT NSString *const KSOThumbnailKitErrorDomain;
-
-FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeFileCacheRead;
-FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeFileCacheDecode;
-FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeImageRead;
-FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeImageDecode;
-FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeCancelled;
-FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeVideoDecode;
-
-#endif
+@end

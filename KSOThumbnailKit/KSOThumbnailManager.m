@@ -16,6 +16,7 @@
 #import "KSOThumbnailManager.h"
 #import "KSOThumbnailOperationWrapper.h"
 #import "KSOImageThumbnailOperation.h"
+#import "KSOMovieThumbnailOperation.h"
 
 #import <Stanley/Stanley.h>
 #import <Loki/Loki.h>
@@ -28,6 +29,8 @@ NSInteger const KSOThumbnailKitErrorCodeFileCacheRead = 1;
 NSInteger const KSOThumbnailKitErrorCodeFileCacheDecode = 2;
 NSInteger const KSOThumbnailKitErrorCodeImageRead = 3;
 NSInteger const KSOThumbnailKitErrorCodeImageDecode = 4;
+NSInteger const KSOThumbnailKitErrorCodeCancelled = 5;
+NSInteger const KSOThumbnailKitErrorCodeVideoDecode = 6;
 
 #define KSOImageFromData(theData) ([[UIImage alloc] initWithData:theData])
 
@@ -262,6 +265,9 @@ NSInteger const KSOThumbnailKitErrorCodeImageDecode = 4;
             
             if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeImage)) {
                 return [KSOImageThumbnailOperation class];
+            }
+            else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
+                return [KSOMovieThumbnailOperation class];
             }
             else {
                 return Nil;

@@ -10,15 +10,19 @@
 		070D86FA1EA1756F00666FB1 /* KSOThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D86F91EA1756F00666FB1 /* KSOThumbnailOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		070D86FE1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D86FC1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		070D86FF1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D86FD1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.m */; };
-		070D87021EA181E400666FB1 /* KSOBaseThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87001EA181E400666FB1 /* KSOBaseThumbnailOperation.h */; };
+		070D87021EA181E400666FB1 /* KSOBaseThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87001EA181E400666FB1 /* KSOBaseThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		070D87031EA181E400666FB1 /* KSOBaseThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D87011EA181E400666FB1 /* KSOBaseThumbnailOperation.m */; };
 		070D87051EA19EFE00666FB1 /* KSOThumbnailManagerDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87041EA19EFE00666FB1 /* KSOThumbnailManagerDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		070D87081EA1A24100666FB1 /* KSOImageThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87061EA1A24100666FB1 /* KSOImageThumbnailOperation.h */; };
+		070D87081EA1A24100666FB1 /* KSOImageThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87061EA1A24100666FB1 /* KSOImageThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		070D87091EA1A24100666FB1 /* KSOImageThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D87071EA1A24100666FB1 /* KSOImageThumbnailOperation.m */; };
 		070D870B1EA1B00100666FB1 /* media in Resources */ = {isa = PBXBuildFile; fileRef = 070D870A1EA1B00100666FB1 /* media */; };
 		070D870D1EA1B78000666FB1 /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 070D870C1EA1B78000666FB1 /* Ditko.framework */; };
 		070D870F1EA1B78700666FB1 /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 070D870E1EA1B78700666FB1 /* Ditko.framework */; };
 		070D87101EA1B78700666FB1 /* Ditko.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 070D870E1EA1B78700666FB1 /* Ditko.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		070D87131EA1BC0500666FB1 /* KSOMovieThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87111EA1BC0500666FB1 /* KSOMovieThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		070D87141EA1BC0500666FB1 /* KSOMovieThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D87121EA1BC0500666FB1 /* KSOMovieThumbnailOperation.m */; };
+		070D87171EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87151EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		070D87181EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D87161EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.m */; };
 		07DE39E01EA1495F00CB965E /* KSOThumbnailKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DE39DE1EA1495F00CB965E /* KSOThumbnailKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07DE39E91EA14B6A00CB965E /* KSOThumbnailManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DE39E71EA14B6A00CB965E /* KSOThumbnailManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07DE39EA1EA14B6A00CB965E /* KSOThumbnailManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DE39E81EA14B6A00CB965E /* KSOThumbnailManager.m */; };
@@ -78,6 +82,10 @@
 		070D870A1EA1B00100666FB1 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = media; sourceTree = "<group>"; };
 		070D870C1EA1B78000666FB1 /* Ditko.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ditko.framework; path = "Vendor/Ditko/build/Debug-iphoneos/Ditko.framework"; sourceTree = "<group>"; };
 		070D870E1EA1B78700666FB1 /* Ditko.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Ditko.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		070D87111EA1BC0500666FB1 /* KSOMovieThumbnailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOMovieThumbnailOperation.h; sourceTree = "<group>"; };
+		070D87121EA1BC0500666FB1 /* KSOMovieThumbnailOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOMovieThumbnailOperation.m; sourceTree = "<group>"; };
+		070D87151EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOAsynchronousThumbnailOperation.h; sourceTree = "<group>"; };
+		070D87161EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOAsynchronousThumbnailOperation.m; sourceTree = "<group>"; };
 		07DE39DB1EA1495F00CB965E /* KSOThumbnailKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSOThumbnailKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DE39DE1EA1495F00CB965E /* KSOThumbnailKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSOThumbnailKit.h; sourceTree = "<group>"; };
 		07DE39DF1EA1495F00CB965E /* KSOThumbnailKit-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KSOThumbnailKit-iOS-Info.plist"; sourceTree = "<group>"; };
@@ -133,8 +141,12 @@
 				070D86FD1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.m */,
 				070D87001EA181E400666FB1 /* KSOBaseThumbnailOperation.h */,
 				070D87011EA181E400666FB1 /* KSOBaseThumbnailOperation.m */,
+				070D87151EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.h */,
+				070D87161EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.m */,
 				070D87061EA1A24100666FB1 /* KSOImageThumbnailOperation.h */,
 				070D87071EA1A24100666FB1 /* KSOImageThumbnailOperation.m */,
+				070D87111EA1BC0500666FB1 /* KSOMovieThumbnailOperation.h */,
+				070D87121EA1BC0500666FB1 /* KSOMovieThumbnailOperation.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -241,8 +253,10 @@
 				07DE39E01EA1495F00CB965E /* KSOThumbnailKit.h in Headers */,
 				07DE39E91EA14B6A00CB965E /* KSOThumbnailManager.h in Headers */,
 				070D86FA1EA1756F00666FB1 /* KSOThumbnailOperation.h in Headers */,
+				070D87171EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.h in Headers */,
 				070D87051EA19EFE00666FB1 /* KSOThumbnailManagerDefines.h in Headers */,
 				070D87081EA1A24100666FB1 /* KSOImageThumbnailOperation.h in Headers */,
+				070D87131EA1BC0500666FB1 /* KSOMovieThumbnailOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +366,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				070D87091EA1A24100666FB1 /* KSOImageThumbnailOperation.m in Sources */,
+				070D87141EA1BC0500666FB1 /* KSOMovieThumbnailOperation.m in Sources */,
 				070D86FF1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.m in Sources */,
+				070D87181EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.m in Sources */,
 				07DE39EA1EA14B6A00CB965E /* KSOThumbnailManager.m in Sources */,
 				070D87031EA181E400666FB1 /* KSOBaseThumbnailOperation.m in Sources */,
 			);
