@@ -31,7 +31,7 @@
     [super main];
     
     NSString *URLString = self.URL.absoluteString;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"v=([A-Za-z0-9]+)" options:0 error:NULL];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"v=([A-Za-z0-9_-]+)" options:0 error:NULL];
     NSTextCheckingResult *result = [regex firstMatchInString:URLString options:0 range:NSMakeRange(0, URLString.length)];
     
     if (result == nil) {
