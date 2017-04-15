@@ -60,6 +60,12 @@
     });
 }
 
+- (void)cancel {
+    [super cancel];
+    
+    [self.webView stopLoading];
+}
+
 - (NSOperationQueue *)privateQueue {
     static NSOperationQueue *kRetval;
     static dispatch_once_t onceToken;
