@@ -14,6 +14,7 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "KSOThumbnailManager.h"
+#import "KSOThumbnailKitPrivateDefines.h"
 #import "KSOThumbnailOperationWrapper.h"
 #import "KSOImageThumbnailOperation.h"
 #import "KSOMovieThumbnailOperation.h"
@@ -24,11 +25,16 @@
 #if (TARGET_OS_IOS || TARGET_OS_OSX)
 #import "KSOWebKitThumbnailOperation.h"
 #endif
+#if (TARGET_OS_OSX)
+#import "KSOQuickLookThumbnailOperation.h"
+#endif
 
 #import <Stanley/Stanley.h>
 #import <Loki/Loki.h>
 
+#if (TARGET_OS_IPHONE)
 #import <MobileCoreServices/MobileCoreServices.h>
+#endif
 
 NSString *const KSOThumbnailKitErrorDomain = @"com.kosoku.ksothumbnailkit.error";
 
@@ -40,8 +46,6 @@ NSInteger const KSOThumbnailKitErrorCodeCancelled = 5;
 NSInteger const KSOThumbnailKitErrorCodeVideoDecode = 6;
 NSInteger const KSOThumbnailKitErrorCodeHTMLLoad = 7;
 NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
-
-#define KSOImageFromData(theData) ([[UIImage alloc] initWithData:theData])
 
 @interface KSOThumbnailManager () <NSCacheDelegate>
 @property (readwrite,copy,nonatomic) NSString *identifier;
@@ -160,7 +164,13 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
                     }
                     else {
                         if (self.isMemoryCachingEnabled) {
-                            [self.memoryCache setObject:image forKey:[self _memoryCacheKeyForURL:URL size:size page:page time:time] cost:image.size.width * image.size.height * image.scale];
+                            NSUInteger cost = image.size.width * image.size.height;
+                            
+#if (TARGET_OS_IPHONE)
+                            cost *= image.scale;
+#endif
+                            
+                            [self.memoryCache setObject:image forKey:[self _memoryCacheKeyForURL:URL size:size page:page time:time] cost:cost];
                         }
                         
                         [self.completionQueue addOperationWithBlock:^{
@@ -184,15 +194,26 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
         void(^completionWithCacheBlock)(KSOThumbnailManager *, KSOImage *, NSError *, KSOThumbnailManagerCacheType, NSURL *, KSOSize, NSUInteger, NSTimeInterval, CGFloat) = ^(KSOThumbnailManager *manager, KSOImage *image, NSError *error, KSOThumbnailManagerCacheType cacheType, NSURL *URL, KSOSize size, NSUInteger page, NSTimeInterval time, CGFloat timeRatio) {
             if (self.isMemoryCachingEnabled &&
                 image != nil) {
+                NSUInteger cost = image.size.width * image.size.height;
                 
-                [self.memoryCache setObject:image forKey:[self _memoryCacheKeyForURL:URL size:size page:page time:timeRatio] cost:image.size.width * image.size.height * image.scale];
+#if (TARGET_OS_IPHONE)
+                cost *= image.scale;
+#endif
+                
+                [self.memoryCache setObject:image forKey:[self _memoryCacheKeyForURL:URL size:size page:page time:timeRatio] cost:cost];
             }
             
             if (self.isFileCachingEnabled &&
                 image != nil) {
                 
                 [self.fileCacheQueue addOperationWithBlock:^{
-                    NSData *data = [image KLO_hasAlpha] ? UIImagePNGRepresentation(image) : UIImageJPEGRepresentation(image, 1.0);
+                    NSData *data;
+                    
+#if (TARGET_OS_IPHONE)
+                    data = [image KLO_hasAlpha] ? UIImagePNGRepresentation(image) : UIImageJPEGRepresentation(image, 1.0);
+#else
+                    data = [image TIFFRepresentationUsingCompression:NSTIFFCompressionNone factor:0.0];
+#endif
                     
                     NSError *outError;
                     if (![data writeToURL:[self _fileCacheURLForURL:URL size:size page:page time:time] options:NSDataWritingAtomic error:&outError]) {
@@ -260,7 +281,15 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     }
 }
 - (NSString *)_memoryCacheKeyForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time; {
-    return [NSString stringWithFormat:@"%@.%@.%@.%@",[URL.absoluteString KST_MD5String],NSStringFromCGSize(size),@(page),@(time)];
+    NSString *sizeString;
+    
+#if (TARGET_OS_IPHONE)
+    sizeString = NSStringFromCGSize(size);
+#else
+    sizeString = NSStringFromSize(size);
+#endif
+    
+    return [NSString stringWithFormat:@"%@.%@.%@.%@",[URL.absoluteString KST_MD5String],sizeString,@(page),@(time)];
 }
 - (NSURL *)_fileCacheURLForMemoryCacheKey:(NSString *)key; {
     return [self.fileCacheDirectoryURL URLByAppendingPathComponent:key isDirectory:NO];
@@ -271,7 +300,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
 - (Class)_thumbnailOperationClassForURL:(NSURL *)URL; {
     if (URL.isFileURL) {
         if (URL.pathExtension.length > 0) {
-#if (TARGET_OS_IOS || TARGET_OS_OSX)
+#if (TARGET_OS_IOS)
             if ([@[@"ppt",@"pptx",@"doc",@"docx",@"xls",@"xlsx",@"csv",@"key",@"pages",@"numbers"] containsObject:URL.pathExtension.lowercaseString]) {
                 return [KSOWebKitThumbnailOperation class];
             }
@@ -320,7 +349,11 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
         return [KSOTextThumbnailOperation class];
     }
     else {
+#if (TARGET_OS_OSX)
+        return [KSOQuickLookThumbnailOperation class];
+#else
         return Nil;
+#endif
     }
 }
 

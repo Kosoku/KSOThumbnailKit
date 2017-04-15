@@ -37,7 +37,7 @@
     }
     else {
         [options setObject:NSPlainTextDocumentType forKey:NSDocumentTypeDocumentAttribute];
-        [options setObject:@{NSForegroundColorAttributeName: [UIColor blackColor], NSBackgroundColorAttributeName: [UIColor whiteColor]} forKey:NSDefaultAttributesDocumentAttribute];
+        [options setObject:@{NSForegroundColorAttributeName: [KSOColor blackColor], NSBackgroundColorAttributeName: [KSOColor whiteColor]} forKey:NSDefaultAttributesDocumentAttribute];
     }
     
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithURL:self.URL options:options documentAttributes:nil error:&outError];
@@ -70,11 +70,11 @@
 #else
         image = [[NSImage alloc] initWithSize:self.size];
         
-        [retval lockFocus];
+        [image lockFocus];
         
         [attributedString drawAtPoint:NSZeroPoint];
         
-        [retval unlockFocus];
+        [image unlockFocus];
 #endif
         
         self.completion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);

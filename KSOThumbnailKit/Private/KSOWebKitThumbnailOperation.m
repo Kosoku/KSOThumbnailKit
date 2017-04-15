@@ -25,6 +25,9 @@
 @interface KSOWebKitThumbnailOperation () <WKNavigationDelegate>
 @property (strong,nonatomic) WKWebView *webView;
 @property (strong,nonatomic) WKNavigation *navigation;
+#if (TARGET_OS_OSX)
+@property (strong,nonatomic) NSWindow *window;
+#endif
 @end
 
 @implementation KSOWebKitThumbnailOperation
@@ -45,11 +48,22 @@
         [config setIgnoresViewportScaleLimits:YES];
 #endif
         
+#if (TARGET_OS_IOS)
         [self setWebView:[[WKWebView alloc] initWithFrame:UIApplication.sharedApplication.keyWindow.bounds configuration:config]];
         [self.webView setUserInteractionEnabled:NO];
-        [self.webView setNavigationDelegate:self];
         
         [UIApplication.sharedApplication.keyWindow insertSubview:self.webView atIndex:0];
+#else
+        NSSize windowSize = NSMakeSize(1024, 768);
+        
+        [self setWindow:[[NSWindow alloc] initWithContentRect:NSMakeRect(-windowSize.width, -windowSize.height, windowSize.width, windowSize.height) styleMask:NSWindowStyleMaskBorderless backing:NSBackingStoreNonretained defer:NO]];
+        [self.window setExcludedFromWindowsMenu:YES];
+        
+        [self setWebView:[[WKWebView alloc] initWithFrame:NSMakeRect(0, 0, windowSize.width, windowSize.height)]];
+        
+        [self.window setContentView:self.webView];
+#endif
+        [self.webView setNavigationDelegate:self];
         
         if (self.URL.isFileURL) {
             [self setNavigation:[self.webView loadFileURL:self.URL allowingReadAccessToURL:self.URL]];

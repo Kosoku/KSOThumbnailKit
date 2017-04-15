@@ -30,6 +30,9 @@
 #ifndef KSOImage
 #define KSOImage UIImage
 #endif
+#ifndef KSOColor
+#define KSOColor UIColor
+#endif
 
 #else
 
@@ -38,6 +41,9 @@
 #endif
 #ifndef KSOImage
 #define KSOImage NSImage
+#endif
+#ifndef KSOColor
+#define KSOColor NSColor
 #endif
 
 #endif
