@@ -123,6 +123,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     NSParameterAssert(size.width > 0.0 && size.height > 0);
     NSParameterAssert(page >= 0);
     NSParameterAssert(time >= 0.0);
+    NSParameterAssert(timeRatio >= 0.0);
     NSParameterAssert(completion != nil);
     
     if (self.isMemoryCachingEnabled) {
