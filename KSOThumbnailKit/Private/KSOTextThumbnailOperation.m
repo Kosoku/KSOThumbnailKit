@@ -66,7 +66,7 @@
         
         UIGraphicsEndImageContext();
         
-        image = [image KLO_imageByResizingToSize:self.size];
+        image = [image KLO_imageByResizingToSize:KDICGSizeAdjustedForMainScreenScale(self.size)];
 #else
         image = [[NSImage alloc] initWithSize:self.size];
         

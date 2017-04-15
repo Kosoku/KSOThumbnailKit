@@ -64,7 +64,7 @@
                         if (data) {
                             KSOImage *image = KSOImageFromData(data);
                             
-                            image = [image KLO_imageByResizingToSize:self.size];
+                            image = [image KLO_imageByResizingToSize:KDICGSizeAdjustedForMainScreenScale(self.size)];
                             
                             self.completion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
                             
