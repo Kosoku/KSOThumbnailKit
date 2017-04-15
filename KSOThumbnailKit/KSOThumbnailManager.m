@@ -21,6 +21,7 @@
 #import "KSOHTMLThumbnailOperation.h"
 #import "KSOTextThumbnailOperation.h"
 #import "KSOVimeoThumbnailOperation.h"
+#import "KSOYouTubeThumbnailOperation.h"
 
 #import <Stanley/Stanley.h>
 #import <Loki/Loki.h>
@@ -282,6 +283,9 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     }
     else if ([URL.host isEqualToString:@"vimeo.com"]) {
         return [KSOVimeoThumbnailOperation class];
+    }
+    else if ([URL.host isEqualToString:@"www.youtube.com"]) {
+        return [KSOYouTubeThumbnailOperation class];
     }
     else {
         return [KSOHTMLThumbnailOperation class];

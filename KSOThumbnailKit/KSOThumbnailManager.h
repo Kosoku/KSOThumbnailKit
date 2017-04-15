@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong,nonatomic,null_resettable) NSOperationQueue *completionQueue;
 
+@property (copy,nonatomic,nullable) NSString *youTubeAPIKey;
+
 - (instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
