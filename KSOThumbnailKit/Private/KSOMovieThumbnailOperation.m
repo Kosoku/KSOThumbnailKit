@@ -59,7 +59,7 @@
                 
                 image = [image KLO_imageByResizingToSize:KDICGSizeAdjustedForMainScreenScale(self.size)];
                 
-                self.completion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, CMTimeGetSeconds(actualTime), self.timeRatio);
+                self.completion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
                 
                 [self setExecuting:NO];
                 [self setFinished:YES];

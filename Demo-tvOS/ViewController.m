@@ -53,7 +53,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [KSOThumbnailManager.sharedManager setCacheOptions:KSOThumbnailManagerCacheOptionsNone];
     [KSOThumbnailManager.sharedManager setYouTubeAPIKey:[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"APIKeys" withExtension:@"plist"]][@"youTube"]];
     
     NSMutableArray *URLs = [[NSMutableArray alloc] init];

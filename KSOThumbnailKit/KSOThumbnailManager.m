@@ -55,9 +55,9 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
 @property (strong,nonatomic) NSCache *memoryCache;
 
 - (void)_createFileCacheDirectoryIfNecessary;
-- (NSString *)_memoryCacheKeyForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time;
+- (NSString *)_memoryCacheKeyForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio;
 - (NSURL *)_fileCacheURLForMemoryCacheKey:(NSString *)key;
-- (NSURL *)_fileCacheURLForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time;
+- (NSURL *)_fileCacheURLForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio;
 - (Class)_thumbnailOperationClassForURL:(NSURL *)URL;
 - (Class)_thumbnailOperationClassForUTI:(NSString *)UTI;
 
@@ -126,7 +126,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     NSParameterAssert(completion != nil);
     
     if (self.isMemoryCachingEnabled) {
-        NSString *key = [self _memoryCacheKeyForURL:URL size:size page:page time:time];
+        NSString *key = [self _memoryCacheKeyForURL:URL size:size page:page time:time timeRatio:timeRatio];
         KSOImage *image = [self.memoryCache objectForKey:key];
         
         if (image != nil) {
@@ -138,7 +138,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     }
     
     if (self.isFileCachingEnabled) {
-        NSURL *fileURL = [self _fileCacheURLForURL:URL size:size page:page time:time];
+        NSURL *fileURL = [self _fileCacheURLForURL:URL size:size page:page time:time timeRatio:timeRatio];
         
         if ([fileURL checkResourceIsReachableAndReturnError:NULL]) {
             [self.fileCacheQueue addOperationWithBlock:^{
@@ -170,7 +170,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
                             cost *= image.scale;
 #endif
                             
-                            [self.memoryCache setObject:image forKey:[self _memoryCacheKeyForURL:URL size:size page:page time:time] cost:cost];
+                            [self.memoryCache setObject:image forKey:[self _memoryCacheKeyForURL:URL size:size page:page time:time timeRatio:timeRatio] cost:cost];
                         }
                         
                         [self.completionQueue addOperationWithBlock:^{
@@ -200,7 +200,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
                 cost *= image.scale;
 #endif
                 
-                [self.memoryCache setObject:image forKey:[self _memoryCacheKeyForURL:URL size:size page:page time:timeRatio] cost:cost];
+                [self.memoryCache setObject:image forKey:[self _memoryCacheKeyForURL:URL size:size page:page time:time timeRatio:timeRatio] cost:cost];
             }
             
             if (self.isFileCachingEnabled &&
@@ -216,7 +216,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
 #endif
                     
                     NSError *outError;
-                    if (![data writeToURL:[self _fileCacheURLForURL:URL size:size page:page time:time] options:NSDataWritingAtomic error:&outError]) {
+                    if (![data writeToURL:[self _fileCacheURLForURL:URL size:size page:page time:time timeRatio:timeRatio] options:NSDataWritingAtomic error:&outError]) {
                         KSTLogObject(outError);
                     }
                 }];
@@ -227,7 +227,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
             }];
         };
         
-        KSOBaseThumbnailOperation *thumbnailOperation = [[thumbnailOperationClass alloc] initWithManager:self URL:URL size:size page:page time:timeRatio timeRatio:timeRatio downloadProgress:downloadProgress completion:completionWithCacheBlock];
+        KSOBaseThumbnailOperation *thumbnailOperation = [[thumbnailOperationClass alloc] initWithManager:self URL:URL size:size page:page time:time timeRatio:timeRatio downloadProgress:downloadProgress completion:completionWithCacheBlock];
         
         [retval setThumbnailOperation:thumbnailOperation];
         
@@ -280,7 +280,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
         }
     }
 }
-- (NSString *)_memoryCacheKeyForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time; {
+- (NSString *)_memoryCacheKeyForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio; {
     NSString *sizeString;
     
 #if (TARGET_OS_IPHONE)
@@ -289,13 +289,13 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     sizeString = NSStringFromSize(size);
 #endif
     
-    return [NSString stringWithFormat:@"%@.%@.%@.%@",[URL.absoluteString KST_MD5String],sizeString,@(page),@(time)];
+    return [NSString stringWithFormat:@"%@.size%@.page%@.time%@.timeRatio%@",[URL.absoluteString KST_MD5String],sizeString,@(page),@(time),@(timeRatio)];
 }
 - (NSURL *)_fileCacheURLForMemoryCacheKey:(NSString *)key; {
     return [self.fileCacheDirectoryURL URLByAppendingPathComponent:key isDirectory:NO];
 }
-- (NSURL *)_fileCacheURLForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time; {
-    return [self _fileCacheURLForMemoryCacheKey:[self _memoryCacheKeyForURL:URL size:size page:page time:time]];
+- (NSURL *)_fileCacheURLForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio; {
+    return [self _fileCacheURLForMemoryCacheKey:[self _memoryCacheKeyForURL:URL size:size page:page time:time timeRatio:timeRatio]];
 }
 - (Class)_thumbnailOperationClassForURL:(NSURL *)URL; {
     if (URL.isFileURL) {
