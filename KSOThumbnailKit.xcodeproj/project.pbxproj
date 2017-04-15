@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070B493F1EA1C798006273C1 /* KSOPDFThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B493D1EA1C798006273C1 /* KSOPDFThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		070B49401EA1C798006273C1 /* KSOPDFThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B493E1EA1C798006273C1 /* KSOPDFThumbnailOperation.m */; };
+		070B49421EA1CA12006273C1 /* KSOThumbnailKitPrivateDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B49411EA1CA12006273C1 /* KSOThumbnailKitPrivateDefines.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		070D86FA1EA1756F00666FB1 /* KSOThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D86F91EA1756F00666FB1 /* KSOThumbnailOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		070D86FE1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D86FC1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		070D86FF1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D86FD1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.m */; };
@@ -71,6 +74,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		070B493D1EA1C798006273C1 /* KSOPDFThumbnailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOPDFThumbnailOperation.h; sourceTree = "<group>"; };
+		070B493E1EA1C798006273C1 /* KSOPDFThumbnailOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOPDFThumbnailOperation.m; sourceTree = "<group>"; };
+		070B49411EA1CA12006273C1 /* KSOThumbnailKitPrivateDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOThumbnailKitPrivateDefines.h; sourceTree = "<group>"; };
 		070D86F91EA1756F00666FB1 /* KSOThumbnailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOThumbnailOperation.h; sourceTree = "<group>"; };
 		070D86FC1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOThumbnailOperationWrapper.h; sourceTree = "<group>"; };
 		070D86FD1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOThumbnailOperationWrapper.m; sourceTree = "<group>"; };
@@ -137,6 +143,7 @@
 		070D86FB1EA1812500666FB1 /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				070B49411EA1CA12006273C1 /* KSOThumbnailKitPrivateDefines.h */,
 				070D86FC1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.h */,
 				070D86FD1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.m */,
 				070D87001EA181E400666FB1 /* KSOBaseThumbnailOperation.h */,
@@ -147,6 +154,8 @@
 				070D87071EA1A24100666FB1 /* KSOImageThumbnailOperation.m */,
 				070D87111EA1BC0500666FB1 /* KSOMovieThumbnailOperation.h */,
 				070D87121EA1BC0500666FB1 /* KSOMovieThumbnailOperation.m */,
+				070B493D1EA1C798006273C1 /* KSOPDFThumbnailOperation.h */,
+				070B493E1EA1C798006273C1 /* KSOPDFThumbnailOperation.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -250,6 +259,7 @@
 				07DE39EC1EA14D3700CB965E /* KSOThumbnailKitDefines.h in Headers */,
 				070D86FE1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.h in Headers */,
 				070D87021EA181E400666FB1 /* KSOBaseThumbnailOperation.h in Headers */,
+				070B49421EA1CA12006273C1 /* KSOThumbnailKitPrivateDefines.h in Headers */,
 				07DE39E01EA1495F00CB965E /* KSOThumbnailKit.h in Headers */,
 				07DE39E91EA14B6A00CB965E /* KSOThumbnailManager.h in Headers */,
 				070D86FA1EA1756F00666FB1 /* KSOThumbnailOperation.h in Headers */,
@@ -257,6 +267,7 @@
 				070D87051EA19EFE00666FB1 /* KSOThumbnailManagerDefines.h in Headers */,
 				070D87081EA1A24100666FB1 /* KSOImageThumbnailOperation.h in Headers */,
 				070D87131EA1BC0500666FB1 /* KSOMovieThumbnailOperation.h in Headers */,
+				070B493F1EA1C798006273C1 /* KSOPDFThumbnailOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +379,7 @@
 				070D87091EA1A24100666FB1 /* KSOImageThumbnailOperation.m in Sources */,
 				070D87141EA1BC0500666FB1 /* KSOMovieThumbnailOperation.m in Sources */,
 				070D86FF1EA1815A00666FB1 /* KSOThumbnailOperationWrapper.m in Sources */,
+				070B49401EA1C798006273C1 /* KSOPDFThumbnailOperation.m in Sources */,
 				070D87181EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.m in Sources */,
 				07DE39EA1EA14B6A00CB965E /* KSOThumbnailManager.m in Sources */,
 				070D87031EA181E400666FB1 /* KSOBaseThumbnailOperation.m in Sources */,

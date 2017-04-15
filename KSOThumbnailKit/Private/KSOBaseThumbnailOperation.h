@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithManager:(KSOThumbnailManager *)manager URL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio downloadProgress:(nullable KSOThumbnailManagerDownloadProgressBlock)downloadProgress completion:(KSOThumbnailManagerCompletionBlock)completion NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
+- (BOOL)checkCancelledAndInvokeCompletion NS_REQUIRES_SUPER;
+
 @end
 
 NS_ASSUME_NONNULL_END

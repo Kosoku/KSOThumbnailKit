@@ -51,4 +51,15 @@
     return self;
 }
 
+- (BOOL)checkCancelledAndInvokeCompletion {
+    if (self.isCancelled) {
+        NSError *error = [NSError errorWithDomain:KSOThumbnailKitErrorDomain code:KSOThumbnailKitErrorCodeCancelled userInfo:nil];
+        
+        self.completion(self.manager, nil, error, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
+        
+        return YES;
+    }
+    return NO;
+}
+
 @end

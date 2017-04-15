@@ -17,6 +17,7 @@
 #import "KSOThumbnailOperationWrapper.h"
 #import "KSOImageThumbnailOperation.h"
 #import "KSOMovieThumbnailOperation.h"
+#import "KSOPDFThumbnailOperation.h"
 
 #import <Stanley/Stanley.h>
 #import <Loki/Loki.h>
@@ -268,6 +269,9 @@ NSInteger const KSOThumbnailKitErrorCodeVideoDecode = 6;
             }
             else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypeMovie)) {
                 return [KSOMovieThumbnailOperation class];
+            }
+            else if (UTTypeConformsTo((__bridge CFStringRef)UTI, kUTTypePDF)) {
+                return [KSOPDFThumbnailOperation class];
             }
             else {
                 return Nil;
