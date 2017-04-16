@@ -141,7 +141,7 @@
 		07F40FC41EA2CAB9003A180A /* KSOTextThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B49501EA20585006273C1 /* KSOTextThumbnailOperation.m */; };
 		07F40FC51EA2CAB9003A180A /* KSOVimeoThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F40F111EA2B74E003A180A /* KSOVimeoThumbnailOperation.m */; };
 		07F40FC61EA2CAB9003A180A /* KSOYouTubeThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F40F151EA2BD1C003A180A /* KSOYouTubeThumbnailOperation.m */; };
-		07F40FC91EA2CBA6003A180A /* KSOQuickLookThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F40FC71EA2CBA6003A180A /* KSOQuickLookThumbnailOperation.h */; };
+		07F40FC91EA2CBA6003A180A /* KSOQuickLookThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F40FC71EA2CBA6003A180A /* KSOQuickLookThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		07F40FCA1EA2CBA6003A180A /* KSOQuickLookThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F40FC81EA2CBA6003A180A /* KSOQuickLookThumbnailOperation.m */; };
 		07F40FCC1EA2D348003A180A /* media in Resources */ = {isa = PBXBuildFile; fileRef = 070D870A1EA1B00100666FB1 /* media */; };
 		07F40FCD1EA2D34C003A180A /* URLs.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07F40F6F1EA2C87B003A180A /* URLs.plist */; };

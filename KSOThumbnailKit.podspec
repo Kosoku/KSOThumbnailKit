@@ -30,13 +30,13 @@ KSOThumbnailKit contains classes used to generate and cache thumbnail images fro
 
   s.ios.deployment_target = '10.0'
   s.osx.deployment_target = '10.12'
-  s.tvos.deployment_target = '3.0'
+  s.tvos.deployment_target = '10.0'
 
   s.source_files = 'KSOThumbnailKit/**/*.{h,m}'
   s.exclude_files = 'KSOThumbnailKit/KSOThumbnailKit-Info.h'
   s.ios.exclude_files = 'KSOThumbnailKit/Private/macOS'
   s.tvos.exclude_files = 'KSOThumbnailKit/Private/macOS', 'KSOThumbnailKit/Private/KSOWebKitThumbnailOperation.{h,m}'
-  s.private_header_files = 'KSOThumbnailKit/Private/*.h'
+  s.private_header_files = 'KSOThumbnailKit/Private/**/*.h'
   
   # s.resource_bundles = {
   #   '${POD_NAME}' => ['${POD_NAME}/Assets/*.png']
