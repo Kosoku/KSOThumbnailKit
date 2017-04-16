@@ -95,6 +95,8 @@
     CollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([CollectionViewCell class]) forIndexPath:indexPath];
     
     [KSOThumbnailManager.sharedManager thumbnailOperationForURL:self.URLs[indexPath.row] completion:^(KSOThumbnailManager * _Nonnull thumbnailManager, UIImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSUInteger page, NSTimeInterval time, CGFloat timeRatio) {
+        NSLog(@"%@ %@",URL,@(cacheType));
+        
         CollectionViewCell *cell = (CollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
         
         [cell.imageView setImage:image];

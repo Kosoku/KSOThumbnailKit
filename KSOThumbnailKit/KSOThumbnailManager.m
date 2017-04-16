@@ -290,6 +290,8 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     }
 }
 - (NSString *)_memoryCacheKeyForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio; {
+    NSString *URLString = URL.isFileURL ? [URL.lastPathComponent KST_MD5String] : [URL.absoluteString KST_MD5String];
+    
     NSString *sizeString;
     
 #if (TARGET_OS_IPHONE)
@@ -298,7 +300,7 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     sizeString = NSStringFromSize(size);
 #endif
     
-    return [NSString stringWithFormat:@"%@.size%@.page%@.time%@.timeRatio%@",[URL.absoluteString KST_MD5String],sizeString,@(page),@(time),@(timeRatio)];
+    return [NSString stringWithFormat:@"%@.size%@.page%@.time%@.timeRatio%@",URLString,sizeString,@(page),@(time),@(timeRatio)];
 }
 - (NSURL *)_fileCacheURLForMemoryCacheKey:(NSString *)key; {
     return [self.fileCacheDirectoryURL URLByAppendingPathComponent:key isDirectory:NO];
