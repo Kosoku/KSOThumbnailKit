@@ -35,7 +35,7 @@
     }
     
     size_t numberOfPages = CGPDFDocumentGetNumberOfPages(documentRef);
-    size_t pageNumber = KSTBoundedValue(self.page + 1, 1, numberOfPages);
+    size_t pageNumber = KSTBoundedValue(self.page + 1, 1, numberOfPages + 1);
     CGPDFPageRef pageRef = CGPDFDocumentGetPage(documentRef, pageNumber);
     CGSize pageSize = CGPDFPageGetBoxRect(pageRef, kCGPDFMediaBox).size;
     KSOImage *image;
