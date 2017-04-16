@@ -79,6 +79,8 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     if (!(self = [super init]))
         return nil;
     
+    NSParameterAssert(identifier != nil);
+    
     _identifier = [identifier copy];
     _cacheOptions = KSOThumbnailManagerCacheOptionsAll;
     _defaultSize = [self.class _defaultSize];
@@ -118,6 +120,12 @@ NSInteger const KSOThumbnailKitErrorCodeRTFDecode = 8;
     [self.thumbnailQueue cancelAllOperations];
 }
 
+- (id<KSOThumbnailOperation>)thumbnailOperationForURL:(NSURL *)URL completion:(KSOThumbnailManagerCompletionBlock)completion {
+    return [self thumbnailOperationForURL:URL size:self.defaultSize page:self.defaultPage time:self.defaultTime timeRatio:self.defaultTimeRatio completion:completion];
+}
+- (id<KSOThumbnailOperation>)thumbnailOperationForURL:(NSURL *)URL size:(KSOSize)size completion:(KSOThumbnailManagerCompletionBlock)completion {
+    return [self thumbnailOperationForURL:URL size:size page:self.defaultPage time:self.defaultTime timeRatio:self.defaultTimeRatio completion:completion];
+}
 - (id<KSOThumbnailOperation>)thumbnailOperationForURL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio completion:(KSOThumbnailManagerCompletionBlock)completion; {
     NSParameterAssert(URL != nil);
     NSParameterAssert(size.width > 0.0 && size.height > 0);

@@ -17,8 +17,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ Protocol describing thumbnail operations returned by KSOThumbnailManager.
+ */
 @protocol KSOThumbnailOperation <NSObject>
 @required
+/**
+ Cancel the thumbnail operation. An error will be returned with the KSOThumbnailKitErrorCodeCancelled code.
+ */
 - (void)cancel;
 @end
 

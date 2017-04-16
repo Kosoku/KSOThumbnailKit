@@ -48,15 +48,42 @@
 
 #endif
 
+/**
+ Error domain for error returned by KSOThumbnailKit classes.
+ */
 FOUNDATION_EXPORT NSString *const KSOThumbnailKitErrorDomain;
 
+/**
+ There was an error reading a thumbnail from the file cache.
+ */
 FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeFileCacheRead;
+/**
+ There was an error decoding a thumbnail from the file cache.
+ */
 FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeFileCacheDecode;
+/**
+ There was an error reading an image from disk.
+ */
 FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeImageRead;
+/**
+ There was an error decoding an image from disk.
+ */
 FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeImageDecode;
+/**
+ The thumbnail operation was cancelled by the client.
+ */
 FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeCancelled;
+/**
+ There was an error decoding a video.
+ */
 FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeVideoDecode;
+/**
+ There was an error loading an HTML page.
+ */
 FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeHTMLLoad;
+/**
+ There was an error decoding RTF content.
+ */
 FOUNDATION_EXPORT NSInteger const KSOThumbnailKitErrorCodeRTFDecode;
 
 #endif
