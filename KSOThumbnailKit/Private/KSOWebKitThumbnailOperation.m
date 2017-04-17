@@ -139,6 +139,8 @@
         NSEnableScreenUpdates();
         
         image = KSOImageFromCGImage(imageRef);
+        
+        CGImageRelease(imageRef);
 #endif
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
