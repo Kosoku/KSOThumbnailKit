@@ -49,29 +49,20 @@
             if (imageRef == NULL) {
                 NSError *error = [NSError errorWithDomain:KSOThumbnailKitErrorDomain code:KSOThumbnailKitErrorCodeVideoDecode userInfo:@{NSUnderlyingErrorKey: outError}];
                 
-                self.completion(self.manager, nil, error, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
-                
-                [self setExecuting:NO];
-                [self setFinished:YES];
+                self.asynchronousCompletion(self.manager, nil, error, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
             }
             else {
                 KSOImage *image = KSOImageFromCGImage(imageRef);
                 
                 image = [image KLO_imageByResizingToSize:KDICGSizeAdjustedForMainScreenScale(self.size)];
                 
-                self.completion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
-                
-                [self setExecuting:NO];
-                [self setFinished:YES];
+                self.asynchronousCompletion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
             }
         }
         else {
             NSError *error = [NSError errorWithDomain:KSOThumbnailKitErrorDomain code:KSOThumbnailKitErrorCodeVideoDecode userInfo:@{NSUnderlyingErrorKey: outError}];
             
-            self.completion(self.manager, nil, error, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
-            
-            [self setExecuting:NO];
-            [self setFinished:YES];
+            self.asynchronousCompletion(self.manager, nil, error, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
         }
     }];
 }

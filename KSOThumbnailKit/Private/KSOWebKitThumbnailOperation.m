@@ -104,10 +104,7 @@
     
     NSError *wrapError = [NSError errorWithDomain:KSOThumbnailKitErrorDomain code:KSOThumbnailKitErrorCodeHTMLLoad userInfo:@{NSUnderlyingErrorKey: error}];
     
-    self.completion(self.manager, nil, wrapError, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
-    
-    [self setExecuting:NO];
-    [self setFinished:YES];
+    self.asynchronousCompletion(self.manager, nil, wrapError, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     if (![self.navigation isEqual:navigation]) {
@@ -146,10 +143,7 @@
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
             image = [image KLO_imageByResizingToSize:KDICGSizeAdjustedForMainScreenScale(self.size)];
             
-            self.completion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
-            
-            [self setExecuting:NO];
-            [self setFinished:YES];
+            self.asynchronousCompletion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
         });
     });
 }

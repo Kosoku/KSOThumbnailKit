@@ -17,6 +17,10 @@
 
 #import <Stanley/Stanley.h>
 
+@interface KSOAsynchronousThumbnailOperation ()
+@property (readwrite,copy,nonatomic) KSOThumbnailManagerCompletionBlock asynchronousCompletion;
+@end
+
 @implementation KSOAsynchronousThumbnailOperation
 
 - (void)start {
@@ -32,6 +36,22 @@
 
 - (BOOL)isAsynchronous {
     return YES;
+}
+
+- (instancetype)initWithManager:(KSOThumbnailManager *)manager URL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio completion:(KSOThumbnailManagerCompletionBlock)completion {
+    if (!(self = [super initWithManager:manager URL:URL size:size page:page time:time timeRatio:timeRatio completion:completion]))
+        return nil;
+    
+    kstWeakify(self);
+    [self setAsynchronousCompletion:^(KSOThumbnailManager *manager, KSOImage *image, NSError *error, KSOThumbnailManagerCacheType cacheType, NSURL *URL, KSOSize size, NSUInteger page, NSTimeInterval time, CGFloat timeRatio) {
+        kstStrongify(self);
+        self.completion(manager, image, error, cacheType, URL, size, page, time, timeRatio);
+        
+        [self setExecuting:NO];
+        [self setFinished:YES];
+    }];
+    
+    return self;
 }
 
 - (BOOL)checkCancelledAndInvokeCompletion {

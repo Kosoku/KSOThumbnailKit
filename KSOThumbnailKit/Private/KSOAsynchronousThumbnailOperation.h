@@ -20,6 +20,8 @@
 @property (assign,nonatomic,getter=isExecuting) BOOL executing;
 @property (assign,nonatomic,getter=isFinished) BOOL finished;
 
+@property (readonly,copy,nonatomic) KSOThumbnailManagerCompletionBlock asynchronousCompletion;
+
 - (void)main NS_REQUIRES_SUPER;
 
 @end
