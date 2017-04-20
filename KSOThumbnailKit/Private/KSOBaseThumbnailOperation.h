@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,nonatomic,nullable) NSOperationQueue *privateQueue;
 
 - (instancetype)initWithManager:(KSOThumbnailManager *)manager URL:(NSURL *)URL size:(KSOSize)size page:(NSUInteger)page time:(NSTimeInterval)time timeRatio:(CGFloat)timeRatio completion:(KSOThumbnailManagerCompletionBlock)completion NS_DESIGNATED_INITIALIZER;
+
++ (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 
 - (BOOL)checkCancelledAndInvokeCompletion NS_REQUIRES_SUPER;

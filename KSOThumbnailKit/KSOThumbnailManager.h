@@ -125,6 +125,8 @@ NS_ASSUME_NONNULL_BEGIN
  @exception NSException Thrown if identifier is nil
  */
 - (instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
+
++ (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 
 /**
