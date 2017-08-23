@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
  - vimeo.com (iOS/tvOS/macOS)
  - www.youtube.com (iOS/tvOS/macOS)
  
- On macOS, if a something is not natively supported by the framework, it will fall back to the QuickLook framework, which can produce thumbnails for almost any format on the host system.
+ On macOS, if a format is not natively supported by the framework, it will fall back to the QuickLook framework, which can produce thumbnails for almost any format on the host system.
  
  A shared manager is provided via the sharedManager class property. You can also create your own instances using the initWithIdentifier: designated initializer.
  */
