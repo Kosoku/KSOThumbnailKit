@@ -111,41 +111,51 @@
         return;
     }
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        __block KSOImage *image;
-        
-#if (TARGET_OS_IPHONE)
-        UIGraphicsBeginImageContextWithOptions(self.webView.bounds.size, YES, 0);
-        
-        [self.webView drawViewHierarchyInRect:self.webView.bounds afterScreenUpdates:YES];
-        
-        image = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
-        
-        [self.webView removeFromSuperview];
-#else
-        NSDisableScreenUpdates();
-        
-        [self.window orderFront:nil];
-        
-        CGImageRef imageRef = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, (CGWindowID)self.window.windowNumber, kCGWindowImageBoundsIgnoreFraming);
-        
-        [self.window orderOut:nil];
-        
-        NSEnableScreenUpdates();
-        
-        image = KSOImageFromCGImage(imageRef);
-        
-        CGImageRelease(imageRef);
-#endif
-        
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
-            image = [image KLO_imageByResizingToSize:KDICGSizeAdjustedForMainScreenScale(self.size)];
+    if (@available(iOS 11.0, macOS 10.13, *)) {
+        [self.webView takeSnapshotWithConfiguration:nil completionHandler:^(KSOImage * _Nullable snapshotImage, NSError * _Nullable error) {
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
+                KSOImage *image = [snapshotImage KLO_imageByResizingToSize:KDICGSizeAdjustedForMainScreenScale(self.size)];
+                
+                self.asynchronousCompletion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
+            });
+        }];
+    } else {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            __block KSOImage *image;
             
-            self.asynchronousCompletion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
+#if (TARGET_OS_IPHONE)
+            UIGraphicsBeginImageContextWithOptions(self.webView.bounds.size, YES, 0);
+            
+            [self.webView drawViewHierarchyInRect:self.webView.bounds afterScreenUpdates:YES];
+            
+            image = UIGraphicsGetImageFromCurrentImageContext();
+            
+            UIGraphicsEndImageContext();
+            
+            [self.webView removeFromSuperview];
+#else
+            NSDisableScreenUpdates();
+            
+            [self.window orderFront:nil];
+            
+            CGImageRef imageRef = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, (CGWindowID)self.window.windowNumber, kCGWindowImageBoundsIgnoreFraming);
+            
+            [self.window orderOut:nil];
+            
+            NSEnableScreenUpdates();
+            
+            image = KSOImageFromCGImage(imageRef);
+            
+            CGImageRelease(imageRef);
+#endif
+            
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
+                image = [image KLO_imageByResizingToSize:KDICGSizeAdjustedForMainScreenScale(self.size)];
+                
+                self.asynchronousCompletion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
+            });
         });
-    });
+    }
 }
 
 @end

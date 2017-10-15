@@ -15,10 +15,14 @@
 
 #import "ViewController.h"
 
+#import <Stanley/Stanley.h>
 #import <KSOThumbnailKit/KSOThumbnailKit.h>
 
 @interface CollectionViewCell : UICollectionViewCell
 @property (strong,nonatomic) UIImageView *imageView;
+
+@property (copy,nonatomic) NSURL *URL;
+@property (strong,nonatomic) id<KSOThumbnailOperation> thumbnailOperation;
 @end
 
 @implementation CollectionViewCell
@@ -38,6 +42,27 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _imageView}]];
     
     return self;
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    
+    [self.thumbnailOperation cancel];
+    [self setThumbnailOperation:nil];
+    [self.imageView setImage:nil];
+}
+
+- (void)setURL:(NSURL *)URL {
+    _URL = URL;
+    
+    kstWeakify(self);
+    self.thumbnailOperation = [KSOThumbnailManager.sharedManager thumbnailOperationForURL:_URL completion:^(KSOThumbnailManager * _Nonnull thumbnailManager, UIImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSUInteger page, NSTimeInterval time, CGFloat timeRatio) {
+        kstStrongify(self);
+        
+        NSLog(@"%@ %@",URL,@(cacheType));
+        
+        [self.imageView setImage:image];
+    }];
 }
 
 @end
@@ -94,13 +119,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([CollectionViewCell class]) forIndexPath:indexPath];
     
-    [KSOThumbnailManager.sharedManager thumbnailOperationForURL:self.URLs[indexPath.row] completion:^(KSOThumbnailManager * _Nonnull thumbnailManager, UIImage * _Nullable image, NSError * _Nullable error, KSOThumbnailManagerCacheType cacheType, NSURL * _Nonnull URL, CGSize size, NSUInteger page, NSTimeInterval time, CGFloat timeRatio) {
-        NSLog(@"%@ %@",URL,@(cacheType));
-        
-        CollectionViewCell *cell = (CollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-        
-        [cell.imageView setImage:image];
-    }];
+    [cell setURL:self.URLs[indexPath.item]];
     
     return cell;
 }
