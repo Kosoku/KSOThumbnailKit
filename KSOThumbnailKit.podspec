@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KSOThumbnailKit'
-  s.version          = '0.3.0'
+  s.version          = '0.4.0'
   s.summary          = 'KSOThumbnailKit contains classes used to generate and cache thumbnail images from a variety of source URLs.'
 
 # This description is used to generate tags and improve search results.
