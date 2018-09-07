@@ -27,56 +27,7 @@
         return;
     }
     
-    CGPDFDocumentRef documentRef = CGPDFDocumentCreateWithURL((__bridge CFURLRef)self.URL);
-    
-    if ([self checkCancelledAndInvokeCompletion]) {
-        CGPDFDocumentRelease(documentRef);
-        return;
-    }
-    
-    size_t numberOfPages = CGPDFDocumentGetNumberOfPages(documentRef);
-    size_t pageNumber = KSTBoundedValue(self.page + 1, 1, numberOfPages + 1);
-    CGPDFPageRef pageRef = CGPDFDocumentGetPage(documentRef, pageNumber);
-    CGSize pageSize = CGPDFPageGetBoxRect(pageRef, kCGPDFMediaBox).size;
-    KSOImage *image;
-    
-#if (TARGET_OS_IPHONE)
-    UIGraphicsBeginImageContextWithOptions(pageSize, NO, 0);
-    
-    CGContextRef contextRef = UIGraphicsGetCurrentContext();
-    
-    CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
-    CGContextTranslateCTM(contextRef, 0, pageSize.height);
-    CGContextScaleCTM(contextRef, 1, -1);
-    CGContextDrawPDFPage(contextRef, pageRef);
-    
-    image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-#else
-    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-    CGContextRef contextRef = CGBitmapContextCreate(NULL, pageSize.width, pageSize.height, 8, 0, colorSpaceRef, (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
-    
-    CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
-    CGContextDrawPDFPage(contextRef, pageRef);
-    
-    CGImageRef imageRef = CGBitmapContextCreateImage(contextRef);
-    
-    image = KSOImageFromCGImage(imageRef);
-    
-    CGContextRelease(contextRef);
-    CGColorSpaceRelease(colorSpaceRef);
-    CGImageRelease(imageRef);
-#endif
-    
-    if ([self checkCancelledAndInvokeCompletion]) {
-        CGPDFDocumentRelease(documentRef);
-        return;
-    }
-    
-    CGPDFDocumentRelease(documentRef);
-    
-    image = [image KLO_imageByResizingToSize:KDICGSizeAdjustedForMainScreenScale(self.size)];
+    KSOImage *image = [KSOImage KLO_imageWithPDFAtURL:self.URL size:self.size page:self.page options:KLOPDFOptionsPreserveAspectRatio];
     
     self.completion(self.manager, image, nil, KSOThumbnailManagerCacheTypeNone, self.URL, self.size, self.page, self.time, self.timeRatio);
 }
