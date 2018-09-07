@@ -7,3 +7,6 @@
 [submodule "Vendor/Ditko"]
 	path = Vendor/Ditko
 	url = https://github.com/Kosoku/Ditko.git
+[submodule "Vendor/KSOFontAwesomeExtensions"]
+	path = Vendor/KSOFontAwesomeExtensions
+	url = https://github.com/Kosoku/KSOFontAwesomeExtensions.git

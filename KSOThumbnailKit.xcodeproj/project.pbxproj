@@ -29,6 +29,9 @@
 		070D87141EA1BC0500666FB1 /* KSOMovieThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D87121EA1BC0500666FB1 /* KSOMovieThumbnailOperation.m */; };
 		070D87171EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 070D87151EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		070D87181EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 070D87161EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.m */; };
+		07A43D7E214333DF0015F9ED /* KSOFontAwesomeExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A43D7D214333DF0015F9ED /* KSOFontAwesomeExtensions.framework */; };
+		07A43D80214333E60015F9ED /* KSOFontAwesomeExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A43D7F214333E60015F9ED /* KSOFontAwesomeExtensions.framework */; };
+		07A43D81214333E60015F9ED /* KSOFontAwesomeExtensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07A43D7F214333E60015F9ED /* KSOFontAwesomeExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07DE39E01EA1495F00CB965E /* KSOThumbnailKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DE39DE1EA1495F00CB965E /* KSOThumbnailKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07DE39E91EA14B6A00CB965E /* KSOThumbnailManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DE39E71EA14B6A00CB965E /* KSOThumbnailManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07DE39EA1EA14B6A00CB965E /* KSOThumbnailManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DE39E81EA14B6A00CB965E /* KSOThumbnailManager.m */; };
@@ -182,6 +185,7 @@
 				07DE3A171EA158DB00CB965E /* Loki.framework in Embed Frameworks */,
 				07DE3A091EA14ECA00CB965E /* KSOThumbnailKit.framework in Embed Frameworks */,
 				070D87101EA1B78700666FB1 /* Ditko.framework in Embed Frameworks */,
+				07A43D81214333E60015F9ED /* KSOFontAwesomeExtensions.framework in Embed Frameworks */,
 				07DE3A141EA158D500CB965E /* Stanley.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -240,6 +244,8 @@
 		070D87121EA1BC0500666FB1 /* KSOMovieThumbnailOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOMovieThumbnailOperation.m; sourceTree = "<group>"; };
 		070D87151EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOAsynchronousThumbnailOperation.h; sourceTree = "<group>"; };
 		070D87161EA1BDD400666FB1 /* KSOAsynchronousThumbnailOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOAsynchronousThumbnailOperation.m; sourceTree = "<group>"; };
+		07A43D7D214333DF0015F9ED /* KSOFontAwesomeExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KSOFontAwesomeExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07A43D7F214333E60015F9ED /* KSOFontAwesomeExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KSOFontAwesomeExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DE39DB1EA1495F00CB965E /* KSOThumbnailKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSOThumbnailKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DE39DE1EA1495F00CB965E /* KSOThumbnailKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSOThumbnailKit.h; sourceTree = "<group>"; };
 		07DE39DF1EA1495F00CB965E /* KSOThumbnailKit-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KSOThumbnailKit-iOS-Info.plist"; sourceTree = "<group>"; };
@@ -307,6 +313,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07A43D7E214333DF0015F9ED /* KSOFontAwesomeExtensions.framework in Frameworks */,
 				070D870D1EA1B78000666FB1 /* Ditko.framework in Frameworks */,
 				07DE3A111EA158CF00CB965E /* Stanley.framework in Frameworks */,
 				07DE3A0F1EA158C900CB965E /* Loki.framework in Frameworks */,
@@ -320,6 +327,7 @@
 				07DE3A161EA158DB00CB965E /* Loki.framework in Frameworks */,
 				07DE3A081EA14ECA00CB965E /* KSOThumbnailKit.framework in Frameworks */,
 				070D870F1EA1B78700666FB1 /* Ditko.framework in Frameworks */,
+				07A43D80214333E60015F9ED /* KSOFontAwesomeExtensions.framework in Frameworks */,
 				07DE3A131EA158D500CB965E /* Stanley.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +496,8 @@
 		07DE3A0D1EA158C900CB965E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07A43D7F214333E60015F9ED /* KSOFontAwesomeExtensions.framework */,
+				07A43D7D214333DF0015F9ED /* KSOFontAwesomeExtensions.framework */,
 				07F40F9F1EA2CA33003A180A /* Stanley.framework */,
 				07F40F9D1EA2CA2F003A180A /* Loki.framework */,
 				07F40F9B1EA2CA2A003A180A /* Ditko.framework */,
@@ -1762,6 +1772,7 @@
 				07F40F241EA2C57C003A180A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07F40F411EA2C630003A180A /* Build configuration list for PBXNativeTarget "Demo-tvOS" */ = {
 			isa = XCConfigurationList;
@@ -1770,6 +1781,7 @@
 				07F40F431EA2C630003A180A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07F40F7F1EA2C9A6003A180A /* Build configuration list for PBXNativeTarget "KSOThumbnailKit-macOS" */ = {
 			isa = XCConfigurationList;
@@ -1778,6 +1790,7 @@
 				07F40F811EA2C9A6003A180A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07F40F971EA2C9B6003A180A /* Build configuration list for PBXNativeTarget "Demo-macOS" */ = {
 			isa = XCConfigurationList;
@@ -1786,6 +1799,7 @@
 				07F40F991EA2C9B6003A180A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
