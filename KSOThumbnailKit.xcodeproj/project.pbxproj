@@ -1151,7 +1151,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kosoku.ksothumbnailkit;
 				PRODUCT_NAME = KSOThumbnailKit;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1388,7 +1388,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kosoku.ksothumbnailkit;
 				PRODUCT_NAME = KSOThumbnailKit;
 				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.0;
 				VALIDATE_PRODUCT = YES;
@@ -1628,7 +1628,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kosoku.ksothumbnailkit;
 				PRODUCT_NAME = KSOThumbnailKit;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
