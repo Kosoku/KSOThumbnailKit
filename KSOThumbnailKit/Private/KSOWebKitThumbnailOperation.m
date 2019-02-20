@@ -138,15 +138,11 @@
             
             [self.webView removeFromSuperview];
 #else
-            NSDisableScreenUpdates();
-            
             [self.window orderFront:nil];
             
             CGImageRef imageRef = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, (CGWindowID)self.window.windowNumber, kCGWindowImageBoundsIgnoreFraming);
             
             [self.window orderOut:nil];
-            
-            NSEnableScreenUpdates();
             
             image = KSOImageFromCGImage(imageRef);
             
