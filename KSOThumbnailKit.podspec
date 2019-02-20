@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KSOThumbnailKit'
-  s.version          = '0.4.0'
+  s.version          = '0.4.1'
   s.summary          = 'KSOThumbnailKit contains classes used to generate and cache thumbnail images from a variety of source URLs.'
 
 # This description is used to generate tags and improve search results.
@@ -23,7 +23,7 @@ KSOThumbnailKit contains classes used to generate and cache thumbnail images fro
 
   s.homepage         = 'https://github.com/Kosoku/KSOThumbnailKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'BSD', :file => 'license.txt' }
+  s.license          = { :type => 'Apache 2.0', :file => 'license.txt' }
   s.author           = { 'William Towe' => 'willbur1984@gmail.com' }
   s.source           = { :git => 'https://github.com/Kosoku/KSOThumbnailKit.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
